@@ -1,0 +1,82 @@
+[
+  {
+    "query": "fusion_place でディメンションのメンバーをインポートするにはどうすればいいですか？",
+    "should_trigger": true
+  },
+  {
+    "query": "fp の Excel-Link でセルのデータを取り込めないんだけど、どうしたらいいの",
+    "should_trigger": true
+  },
+  {
+    "query": "fusion_place のバージョン 15 から 16 へのアップグレード手順を教えてください",
+    "should_trigger": true
+  },
+  {
+    "query": "組織変更があった場合の fusion_place アプリ設計のベストプラクティスを教えてほしい",
+    "should_trigger": true
+  },
+  {
+    "query": "台帳のアクセス権限を特定のユーザーグループだけに絞る方法はありますか",
+    "should_trigger": true
+  },
+  {
+    "query": "How do I configure SAML authentication in fusion_place?",
+    "should_trigger": true
+  },
+  {
+    "query": "fusionplace でワークフロー提出後に承認者にメール通知が届かないのですがなぜでしょうか",
+    "should_trigger": true
+  },
+  {
+    "query": "フォームのラベルに計算式を設定する方法を教えてください（fusion_place）",
+    "should_trigger": true
+  },
+  {
+    "query": "fusion_place のクラウドサービスを利用していますが、データのバックアップ方法を確認したい",
+    "should_trigger": true
+  },
+  {
+    "query": "元帳のバージョン管理機能を使いたいのですが、どのように設定しますか",
+    "should_trigger": true
+  },
+  {
+    "query": "Excel のピボットテーブルで月別売上を集計したいのですが、行フィールドの設定方法がわかりません",
+    "should_trigger": false
+  },
+  {
+    "query": "PostgreSQL のスキーマ設計でディメンションテーブルとファクトテーブルを分けるべきですか",
+    "should_trigger": false
+  },
+  {
+    "query": "Tableau でワークフローを自動化して Slack に通知を送る方法を教えてください",
+    "should_trigger": false
+  },
+  {
+    "query": "Python で Excel ファイルを読み込んで元帳データを整形するスクリプトを書いて",
+    "should_trigger": false
+  },
+  {
+    "query": "社内向けの業務フォームを Web で作成したいのですが、おすすめのツールはありますか",
+    "should_trigger": false
+  },
+  {
+    "query": "Power BI でデータモデルを設計するときのディメンションの考え方について教えて",
+    "should_trigger": false
+  },
+  {
+    "query": "SAP の台帳データを CSV エクスポートして分析したい",
+    "should_trigger": false
+  },
+  {
+    "query": "JIRA でチームのワークフローとタスク管理を効率化する設定方法は？",
+    "should_trigger": false
+  },
+  {
+    "query": "企業向けの財務計画・予算管理ツールを比較したいのですが、何かおすすめはありますか",
+    "should_trigger": false
+  },
+  {
+    "query": "Azure AD で社内システムのシングルサインオンを設定する方法を教えてください",
+    "should_trigger": false
+  }
+]

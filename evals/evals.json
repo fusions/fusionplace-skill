@@ -1,0 +1,104 @@
+{
+  "skill_name": "fusionplace-librarian",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "fusion_place でディメンションのメンバーをインポートするにはどうすればいいですか？",
+      "expected_output": "マニュアルの概念・しくみセクションを参照し、ディメンションメンバーのインポート手順を日本語で説明。参考URLを含む。",
+      "files": [],
+      "assertions": [
+        {
+          "text": "公式ドキュメント（docs.fusionplace.net）のURLが1件以上含まれている",
+          "type": "contains_pattern",
+          "pattern": "docs\\.fusionplace\\.net"
+        },
+        {
+          "text": "インポートファイルの形式としてCSVに言及している",
+          "type": "contains_keyword",
+          "keyword": "CSV"
+        },
+        {
+          "text": "設計モードと管理モード（または維持管理）を区別して説明している",
+          "type": "contains_all_keywords",
+          "keywords": ["設計モード", "管理モード"]
+        },
+        {
+          "text": "番号付きの手順（ステップ）が含まれている",
+          "type": "contains_pattern",
+          "pattern": "^\\d+\\."
+        },
+        {
+          "text": "クリップボードからのインポート方法にも言及している",
+          "type": "contains_keyword",
+          "keyword": "クリップボード"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "fusion_place でデータを入力して保存しようとするとエラーになります。どう対処すればいいですか？",
+      "expected_output": "Q&Aのトラブルシューティング（操作またはエラーメッセージ）セクションを参照し、データ入力エラーの対処方法を説明。参考URLを含む。",
+      "files": [],
+      "assertions": [
+        {
+          "text": "公式ドキュメント（docs.fusionplace.net）のURLが1件以上含まれている",
+          "type": "contains_pattern",
+          "pattern": "docs\\.fusionplace\\.net"
+        },
+        {
+          "text": "3種類以上の原因・ケースが説明されている（見出しや番号付きセクションで確認）",
+          "type": "min_section_count",
+          "min": 3
+        },
+        {
+          "text": "元帳のオープン・クローズ設定に言及している",
+          "type": "contains_keyword",
+          "keyword": "元帳"
+        },
+        {
+          "text": "ユーザーの権限（アクセス権）に言及している",
+          "type": "contains_keyword",
+          "keyword": "権限"
+        },
+        {
+          "text": "対処法・解決策（チェックリストや具体的な手順）が含まれている",
+          "type": "contains_any_keyword",
+          "keywords": ["対処法", "チェックリスト", "確認してください", "解除"]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "fusion_place で組織変更があった場合、アプリケーションの設計をどのように対応すれば良いですか？",
+      "expected_output": "パターンライブラリの「組織変更に対応する」パターンまたは関連パターンを参照し、設計のアプローチを説明。参考URLを含む。",
+      "files": [],
+      "assertions": [
+        {
+          "text": "公式ドキュメント（docs.fusionplace.net）のURLが1件以上含まれている",
+          "type": "contains_pattern",
+          "pattern": "docs\\.fusionplace\\.net"
+        },
+        {
+          "text": "パターンライブラリ（docs.fusionplace.net/patterns/）のURLが含まれている",
+          "type": "contains_pattern",
+          "pattern": "docs\\.fusionplace\\.net/patterns/"
+        },
+        {
+          "text": "2種類以上の設計パターンが説明されている",
+          "type": "min_section_count",
+          "min": 2
+        },
+        {
+          "text": "過年度データの扱い（過去の組織構造での集計）に言及している",
+          "type": "contains_any_keyword",
+          "keywords": ["過年度", "過去", "旧組織", "前年"]
+        },
+        {
+          "text": "ディメンション管理のアプローチに言及している",
+          "type": "contains_keyword",
+          "keyword": "ディメンション"
+        }
+      ]
+    }
+  ]
+}
