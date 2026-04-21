@@ -99,6 +99,171 @@
           "keyword": "ディメンション"
         }
       ]
+    },
+    {
+      "id": 4,
+      "prompt": "ディメンションと元帳の違いを教えてください",
+      "expected_output": "マニュアルの概念セクションを参照し、ディメンションと元帳それぞれの役割・違いを明確に説明。参考URLを含む。",
+      "files": [],
+      "assertions": [
+        {
+          "text": "公式ドキュメント（docs.fusionplace.net）のURLが1件以上含まれている",
+          "type": "contains_pattern",
+          "pattern": "docs\\.fusionplace\\.net"
+        },
+        {
+          "text": "ディメンションの説明（多次元データベースの軸・メンバーなど）が含まれている",
+          "type": "contains_any_keyword",
+          "keywords": ["ディメンション", "軸", "メンバ"]
+        },
+        {
+          "text": "元帳の説明（データを格納・多次元テーブルなど）が含まれている",
+          "type": "contains_any_keyword",
+          "keywords": ["元帳", "キューブ", "データを格納"]
+        },
+        {
+          "text": "両者の関係性・違いが説明されている（ディメンションと元帳の組み合わせ・共有に言及）",
+          "type": "contains_any_keyword",
+          "keywords": ["組み合わせ", "共有", "複数", "定義"]
+        },
+        {
+          "text": "憶測による断定的な説明をしていない（公式ドキュメント根拠の明示）",
+          "type": "contains_any_keyword",
+          "keywords": ["マニュアルより", "参照：", "ドキュメントより"]
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Excel-Link のテンプレート処理機能はどのように使いますか？",
+      "expected_output": "マニュアルのExcel-Link操作手引きを参照し、テンプレート処理機能の概念・手順を説明。参考URLを含む。",
+      "files": [],
+      "assertions": [
+        {
+          "text": "公式ドキュメント（docs.fusionplace.net）のURLが1件以上含まれている",
+          "type": "contains_pattern",
+          "pattern": "docs\\.fusionplace\\.net"
+        },
+        {
+          "text": "テンプレート処理機能の特徴（リンク機能との違い）に言及している",
+          "type": "contains_any_keyword",
+          "keywords": ["テンプレート", "リンク機能", "自動", "メンバリスト"]
+        },
+        {
+          "text": "行キーやメンバリストの指定方法について言及している",
+          "type": "contains_any_keyword",
+          "keywords": ["行キー", "メンバリスト", "列キー", "ネスト"]
+        },
+        {
+          "text": "操作手順（番号付きステップや手順の説明）が含まれている",
+          "type": "contains_any_keyword",
+          "keywords": ["手順", "ステップ", "クリック", "選択"]
+        },
+        {
+          "text": "Excel-Link固有の用語（リンク領域・反映・テンプレートシートなど）が使われている",
+          "type": "contains_any_keyword",
+          "keywords": ["リンク領域", "反映", "テンプレートシート", "Excel-Link"]
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "元帳にデータを入力しようとしたがエラーになります",
+      "expected_output": "Q&Aのトラブルシューティングを参照し、元帳入力エラーの原因と対処法を説明。参考URLを含む。",
+      "files": [],
+      "assertions": [
+        {
+          "text": "公式ドキュメント（docs.fusionplace.net）のURLが1件以上含まれている",
+          "type": "contains_pattern",
+          "pattern": "docs\\.fusionplace\\.net"
+        },
+        {
+          "text": "エラーの原因として権限や設定の問題に言及している",
+          "type": "contains_any_keyword",
+          "keywords": ["権限", "アクセス", "設定", "オープン"]
+        },
+        {
+          "text": "元帳のオープン・クローズまたは元帳マスクに言及している",
+          "type": "contains_any_keyword",
+          "keywords": ["オープン", "クローズ", "元帳マスク", "入力禁止"]
+        },
+        {
+          "text": "具体的な対処手順または確認項目が含まれている",
+          "type": "contains_any_keyword",
+          "keywords": ["確認", "対処", "手順", "チェック"]
+        },
+        {
+          "text": "スコープ外（fusion_place以外）の内容を回答していない（融合していない）",
+          "type": "contains_any_keyword",
+          "keywords": ["fusion_place", "元帳", "マニュアル"]
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "配賦計算のパターンを教えてください",
+      "expected_output": "パターンライブラリの配賦関連パターンを参照し、設計アプローチを説明。参考URLを含む。",
+      "files": [],
+      "assertions": [
+        {
+          "text": "公式ドキュメント（docs.fusionplace.net）のURLが1件以上含まれている",
+          "type": "contains_pattern",
+          "pattern": "docs\\.fusionplace\\.net"
+        },
+        {
+          "text": "配賦の概念・目的に言及している",
+          "type": "contains_any_keyword",
+          "keywords": ["配賦", "按分", "割り当て", "コスト"]
+        },
+        {
+          "text": "Excel-Linkまたはフォームを使った配賦計算の実現方法に言及している",
+          "type": "contains_any_keyword",
+          "keywords": ["Excel-Link", "フォーム", "スクリプト", "計算"]
+        },
+        {
+          "text": "配賦先ディメンション（借用など）の設計について言及している",
+          "type": "contains_any_keyword",
+          "keywords": ["借用", "配賦先", "ディメンション", "元帳"]
+        },
+        {
+          "text": "パターンライブラリのURLが含まれている（またはパターン名が言及されている）",
+          "type": "contains_any_keyword",
+          "keywords": ["patterns", "パターン", "ap-"]
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "Python の使い方を教えてください",
+      "expected_output": "fusion_place と無関係な質問として丁重に断り、fusion_place に関する質問を促す。",
+      "files": [],
+      "assertions": [
+        {
+          "text": "Pythonのコードや文法説明を提供していない",
+          "type": "not_contains_keyword",
+          "keyword": "print("
+        },
+        {
+          "text": "fusion_place のスコープ外であると明示している",
+          "type": "contains_any_keyword",
+          "keywords": ["対象外", "範囲外", "fusion_place", "対応していません", "スコープ"]
+        },
+        {
+          "text": "fusion_place に関する質問を促す（またはサポートへの誘導がある）",
+          "type": "contains_any_keyword",
+          "keywords": ["fusion_place", "ご質問", "お問い合わせ", "ご利用"]
+        },
+        {
+          "text": "回答が短く（300文字以下）、長い説明をしていない",
+          "type": "max_length",
+          "max": 300
+        },
+        {
+          "text": "丁寧な断りの表現が含まれている",
+          "type": "contains_any_keyword",
+          "keywords": ["申し訳", "対応できません", "範囲外", "対象外", "対応しておりません"]
+        }
+      ]
     }
   ]
 }
