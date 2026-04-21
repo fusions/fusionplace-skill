@@ -3,8 +3,8 @@
   "evals": [
     {
       "id": 1,
-      "prompt": "fusion_place でディメンションのメンバーをインポートするにはどうすればいいですか？",
-      "expected_output": "マニュアルの概念・しくみセクションを参照し、ディメンションメンバーのインポート手順を日本語で説明。参考URLを含む。",
+      "prompt": "Excel-Linkのインストールエラーが発生しました。エラーメッセージの画面ショットを添付しています。（「予期しないエラーが発生しました・・・ AddIn クラスの Installed プロパティを設定できません。」）",
+      "expected_output": "Q&Aを参照し、アドインの有効化失敗の原因と対応策を案内。https://docs.fusionplace.net/qanda/ja/excel_link/Support_02557.html",
       "files": [],
       "assertions": [
         {
@@ -13,31 +13,31 @@
           "pattern": "docs\\.fusionplace\\.net"
         },
         {
-          "text": "インポートファイルの形式としてCSVに言及している",
-          "type": "contains_keyword",
-          "keyword": "CSV"
+          "text": "アドインの手動有効化に言及している",
+          "type": "contains_any_keyword",
+          "keywords": ["手動有効化", "手動で有効", "アドインを有効"]
         },
         {
-          "text": "設計モードと管理モード（または維持管理）を区別して説明している",
-          "type": "contains_all_keywords",
-          "keywords": ["設計モード", "管理モード"]
+          "text": "fp-excel-link.xla または fp-excel-link-ribbon.xlsm に言及している",
+          "type": "contains_any_keyword",
+          "keywords": ["fp-excel-link.xla", "fp-excel-link-ribbon.xlsm", "fp-excel-link"]
         },
         {
-          "text": "番号付きの手順（ステップ）が含まれている",
-          "type": "contains_pattern",
-          "pattern": "^\\d+\\."
+          "text": "トラストセンターまたはグループポリシーへの言及がある",
+          "type": "contains_any_keyword",
+          "keywords": ["トラストセンター", "グループポリシー"]
         },
         {
-          "text": "クリップボードからのインポート方法にも言及している",
-          "type": "contains_keyword",
-          "keyword": "クリップボード"
+          "text": "完全削除・再インストールの手順に言及している",
+          "type": "contains_any_keyword",
+          "keywords": ["完全削除", "再インストール", "アンインストール"]
         }
       ]
     },
     {
       "id": 2,
-      "prompt": "fusion_place でデータを入力して保存しようとするとエラーになります。どう対処すればいいですか？",
-      "expected_output": "Q&Aのトラブルシューティング（操作またはエラーメッセージ）セクションを参照し、データ入力エラーの対処方法を説明。参考URLを含む。",
+      "prompt": "フォームでデータの取得時にメモリ不足となって画面が固まってしまう。どうしたらいいか。",
+      "expected_output": "Q&Aを参照し、原因とインポートフォーム見直しによる対処法を案内。https://docs.fusionplace.net/qanda/ja/form/form-data-import-memory.html",
       "files": [],
       "assertions": [
         {
@@ -46,31 +46,31 @@
           "pattern": "docs\\.fusionplace\\.net"
         },
         {
-          "text": "3種類以上の原因・ケースが説明されている（見出しや番号付きセクションで確認）",
-          "type": "min_section_count",
-          "min": 3
-        },
-        {
-          "text": "元帳のオープン・クローズ設定に言及している",
-          "type": "contains_keyword",
-          "keyword": "元帳"
-        },
-        {
-          "text": "ユーザーの権限（アクセス権）に言及している",
-          "type": "contains_keyword",
-          "keyword": "権限"
-        },
-        {
-          "text": "対処法・解決策（チェックリストや具体的な手順）が含まれている",
+          "text": "リーフメンバのみのメンバリスト使用を推奨している",
           "type": "contains_any_keyword",
-          "keywords": ["対処法", "チェックリスト", "確認してください", "解除"]
+          "keywords": ["リーフメンバ", "リーフ"]
+        },
+        {
+          "text": "「データ無しの時は非表示」設定に言及している",
+          "type": "contains_any_keyword",
+          "keywords": ["データ無しの時は非表示", "非表示", "データなしの時"]
+        },
+        {
+          "text": "データ爆発のメカニズム（祖先メンバ含有による増幅）に言及している",
+          "type": "contains_any_keyword",
+          "keywords": ["データ爆発", "祖先メンバ", "増幅"]
+        },
+        {
+          "text": "ループ仕様への言及がある",
+          "type": "contains_keyword",
+          "keyword": "ループ仕様"
         }
       ]
     },
     {
       "id": 3,
-      "prompt": "fusion_place で組織変更があった場合、アプリケーションの設計をどのように対応すれば良いですか？",
-      "expected_output": "パターンライブラリの「組織変更に対応する」パターンまたは関連パターンを参照し、設計のアプローチを説明。参考URLを含む。",
+      "prompt": "外観 / テーマを変更しました。保存ボタンがアクティブになる際、通常は緑色になっているが、ユーザによってグレーになっているケースがある。ただしこの場合保存ボタンの押下は可能。",
+      "expected_output": "Q&Aを参照し、対処法を説明。https://docs.fusionplace.net/qanda/ja/others/change-theme.html",
       "files": [],
       "assertions": [
         {
@@ -79,31 +79,31 @@
           "pattern": "docs\\.fusionplace\\.net"
         },
         {
-          "text": "パターンライブラリ（docs.fusionplace.net/patterns/）のURLが含まれている",
-          "type": "contains_pattern",
-          "pattern": "docs\\.fusionplace\\.net/patterns/"
-        },
-        {
-          "text": "2種類以上の設計パターンが説明されている",
-          "type": "min_section_count",
-          "min": 2
-        },
-        {
-          "text": "過年度データの扱い（過去の組織構造での集計）に言及している",
-          "type": "contains_any_keyword",
-          "keywords": ["過年度", "過去", "旧組織", "前年"]
-        },
-        {
-          "text": "ディメンション管理のアプローチに言及している",
+          "text": "クライアントプログラムの再起動に言及している",
           "type": "contains_keyword",
-          "keyword": "ディメンション"
+          "keyword": "再起動"
+        },
+        {
+          "text": "テーマまたは外観設定への言及がある",
+          "type": "contains_any_keyword",
+          "keywords": ["テーマ", "外観"]
+        },
+        {
+          "text": "クライアントプログラムへの言及がある（再起動対象を特定）",
+          "type": "contains_keyword",
+          "keyword": "クライアントプログラム"
+        },
+        {
+          "text": "バージョン12.0以降の挙動である旨に言及している",
+          "type": "contains_any_keyword",
+          "keywords": ["12.0", "v12", "バージョン12"]
         }
       ]
     },
     {
       "id": 4,
-      "prompt": "ディメンションと元帳の違いを教えてください",
-      "expected_output": "マニュアルの概念セクションを参照し、ディメンションと元帳それぞれの役割・違いを明確に説明。参考URLを含む。",
+      "prompt": "フル機能版フォームで、会計年度と相対期間をパラメータで指定し、指定月と前 3 カ月分を表示するフォームを作成したいのです。サンプルアプリがあったら教えてください。",
+      "expected_output": "Q&Aを参照し、フォームの設定方法とサンプルを案内。https://docs.fusionplace.net/qanda/ja/form/form-relative-position.html https://docs.fusionplace.net/qanda/ja/form/Support_00387.html",
       "files": [],
       "assertions": [
         {
@@ -112,31 +112,31 @@
           "pattern": "docs\\.fusionplace\\.net"
         },
         {
-          "text": "ディメンションの説明（多次元データベースの軸・メンバーなど）が含まれている",
-          "type": "contains_any_keyword",
-          "keywords": ["ディメンション", "軸", "メンバ"]
+          "text": "@relative_position 関数への言及がある",
+          "type": "contains_keyword",
+          "keyword": "@relative_position"
         },
         {
-          "text": "元帳の説明（データを格納・多次元テーブルなど）が含まれている",
+          "text": "サンプルアプリのダウンロードに言及している",
           "type": "contains_any_keyword",
-          "keywords": ["元帳", "キューブ", "データを格納"]
+          "keywords": ["サンプル", "ダウンロード", "RELATIVE_POSITION.zip"]
         },
         {
-          "text": "両者の関係性・違いが説明されている（ディメンションと元帳の組み合わせ・共有に言及）",
-          "type": "contains_any_keyword",
-          "keywords": ["組み合わせ", "共有", "複数", "定義"]
+          "text": "メンバリストへの言及がある",
+          "type": "contains_keyword",
+          "keyword": "メンバリスト"
         },
         {
-          "text": "憶測による断定的な説明をしていない（公式ドキュメント根拠の明示）",
+          "text": "年度跨ぎへの対応（前年度用・当年度用のメンバリスト分離）に言及している",
           "type": "contains_any_keyword",
-          "keywords": ["マニュアルより", "参照：", "ドキュメントより"]
+          "keywords": ["年度跨ぎ", "前年度用", "当年度用", "年度をまたぐ"]
         }
       ]
     },
     {
       "id": 5,
-      "prompt": "Excel-Link のテンプレート処理機能はどのように使いますか？",
-      "expected_output": "マニュアルのExcel-Link操作手引きを参照し、テンプレート処理機能の概念・手順を説明。参考URLを含む。",
+      "prompt": "システムレベルアップをしたのですが、手続きについて教えてください。",
+      "expected_output": "Q&Aを参照し、条件変更手続きの方法を案内。https://docs.fusionplace.net/qanda/ja/others/Support_01851.html",
       "files": [],
       "assertions": [
         {
@@ -145,31 +145,31 @@
           "pattern": "docs\\.fusionplace\\.net"
         },
         {
-          "text": "テンプレート処理機能の特徴（リンク機能との違い）に言及している",
+          "text": "申込書への言及がある",
           "type": "contains_any_keyword",
-          "keywords": ["テンプレート", "リンク機能", "自動", "メンバリスト"]
+          "keywords": ["申込書", "申請書"]
         },
         {
-          "text": "行キーやメンバリストの指定方法について言及している",
+          "text": "捺印（または押印）への言及がある",
           "type": "contains_any_keyword",
-          "keywords": ["行キー", "メンバリスト", "列キー", "ネスト"]
+          "keywords": ["捺印", "押印"]
         },
         {
-          "text": "操作手順（番号付きステップや手順の説明）が含まれている",
+          "text": "郵送またはメール送付（スキャン）への言及がある",
           "type": "contains_any_keyword",
-          "keywords": ["手順", "ステップ", "クリック", "選択"]
+          "keywords": ["郵送", "メール送付", "スキャン"]
         },
         {
-          "text": "Excel-Link固有の用語（リンク領域・反映・テンプレートシートなど）が使われている",
+          "text": "処理期間（2営業日）またはパートナー・代理店経由への言及がある",
           "type": "contains_any_keyword",
-          "keywords": ["リンク領域", "反映", "テンプレートシート", "Excel-Link"]
+          "keywords": ["2営業日", "パートナー", "代理店"]
         }
       ]
     },
     {
       "id": 6,
-      "prompt": "元帳にデータを入力しようとしたがエラーになります",
-      "expected_output": "Q&Aのトラブルシューティングを参照し、元帳入力エラーの原因と対処法を説明。参考URLを含む。",
+      "prompt": "fusion_placeを使用しています。問い合わせ担当者を変更したいのですが、手続きについて教えてください。",
+      "expected_output": "Q&Aを参照し、お問合せ先の変更手続きを案内。https://docs.fusionplace.net/qanda/ja/others/Support_00603.html",
       "files": [],
       "assertions": [
         {
@@ -178,31 +178,31 @@
           "pattern": "docs\\.fusionplace\\.net"
         },
         {
-          "text": "エラーの原因として権限や設定の問題に言及している",
+          "text": "申請書または申込書への言及がある",
           "type": "contains_any_keyword",
-          "keywords": ["権限", "アクセス", "設定", "オープン"]
+          "keywords": ["申請書", "申込書", "許諾申請書"]
         },
         {
-          "text": "元帳のオープン・クローズまたは元帳マスクに言及している",
+          "text": "捺印への言及がある",
           "type": "contains_any_keyword",
-          "keywords": ["オープン", "クローズ", "元帳マスク", "入力禁止"]
+          "keywords": ["捺印", "押印"]
         },
         {
-          "text": "具体的な対処手順または確認項目が含まれている",
-          "type": "contains_any_keyword",
-          "keywords": ["確認", "対処", "手順", "チェック"]
+          "text": "処理期間（2営業日）への言及がある",
+          "type": "contains_keyword",
+          "keyword": "2営業日"
         },
         {
-          "text": "スコープ外（fusion_place以外）の内容を回答していない（融合していない）",
+          "text": "代理店・パートナー経由または直接契約の手続き分岐に言及している",
           "type": "contains_any_keyword",
-          "keywords": ["fusion_place", "元帳", "マニュアル"]
+          "keywords": ["代理店", "パートナー", "直接契約"]
         }
       ]
     },
     {
       "id": 7,
-      "prompt": "配賦計算のパターンを教えてください",
-      "expected_output": "パターンライブラリの配賦関連パターンを参照し、設計アプローチを説明。参考URLを含む。",
+      "prompt": "ディメンションのメンバを削除したい。手順について教えてください。",
+      "expected_output": "Q&Aを参照し、対策を案内。手順は推論により案内。https://docs.fusionplace.net/qanda/ja/database/member-delete.html",
       "files": [],
       "assertions": [
         {
@@ -211,57 +211,57 @@
           "pattern": "docs\\.fusionplace\\.net"
         },
         {
-          "text": "配賦の概念・目的に言及している",
+          "text": "保存後はメンバを削除できない（削除不可）旨を説明している",
           "type": "contains_any_keyword",
-          "keywords": ["配賦", "按分", "割り当て", "コスト"]
+          "keywords": ["削除できません", "削除不可", "削除は", "削除機能"]
         },
         {
-          "text": "Excel-Linkまたはフォームを使った配賦計算の実現方法に言及している",
+          "text": "ラベル変更（NEW_LABEL）による代替策に言及している",
           "type": "contains_any_keyword",
-          "keywords": ["Excel-Link", "フォーム", "スクリプト", "計算"]
+          "keywords": ["ラベル", "NEW_LABEL", "ラベルを変更"]
         },
         {
-          "text": "配賦先ディメンション（借用など）の設計について言及している",
+          "text": "#ACTIVE プロパティ（使用区分）による入力禁止化に言及している",
           "type": "contains_any_keyword",
-          "keywords": ["借用", "配賦先", "ディメンション", "元帳"]
+          "keywords": ["#ACTIVE", "使用区分", "FALSE"]
         },
         {
-          "text": "パターンライブラリのURLが含まれている（またはパターン名が言及されている）",
-          "type": "contains_any_keyword",
-          "keywords": ["patterns", "パターン", "ap-"]
+          "text": "2種類以上の代替手段が説明されている",
+          "type": "min_section_count",
+          "min": 2
         }
       ]
     },
     {
       "id": 8,
-      "prompt": "Python の使い方を教えてください",
-      "expected_output": "fusion_place と無関係な質問として丁重に断り、fusion_place に関する質問を促す。",
+      "prompt": ".fusionplace フォルダが作られるタイミングを教えてください。",
+      "expected_output": "公式ドキュメントがないためサポート窓口へ",
       "files": [],
       "assertions": [
         {
-          "text": "Pythonのコードや文法説明を提供していない",
-          "type": "not_contains_keyword",
-          "keyword": "print("
-        },
-        {
-          "text": "fusion_place のスコープ外であると明示している",
+          "text": "公式ドキュメントに該当情報がない旨を伝えている",
           "type": "contains_any_keyword",
-          "keywords": ["対象外", "範囲外", "fusion_place", "対応していません", "スコープ"]
+          "keywords": ["見当たりません", "見つかりません", "記載がありません", "掲載されていません", "情報がありません", "確認できません"]
         },
         {
-          "text": "fusion_place に関する質問を促す（またはサポートへの誘導がある）",
+          "text": "公式サポートへの問い合わせを推奨している",
           "type": "contains_any_keyword",
-          "keywords": ["fusion_place", "ご質問", "お問い合わせ", "ご利用"]
+          "keywords": ["サポート", "お問い合わせ", "問い合わせ窓口"]
         },
         {
-          "text": "回答が短く（300文字以下）、長い説明をしていない",
-          "type": "max_length",
-          "max": 300
+          "text": "問い合わせ先のURLが含まれている",
+          "type": "contains_pattern",
+          "pattern": "docs\\.fusionplace\\.net"
         },
         {
-          "text": "丁寧な断りの表現が含まれている",
+          "text": ".fusionplace フォルダについて質問の主題に言及している",
+          "type": "contains_keyword",
+          "keyword": ".fusionplace"
+        },
+        {
+          "text": "断定を避け不確実性を示している（推論・推測・不明等）",
           "type": "contains_any_keyword",
-          "keywords": ["申し訳", "対応できません", "範囲外", "対象外", "対応しておりません"]
+          "keywords": ["推論", "推測", "不明", "断定できません", "明記されていません", "明確ではありません"]
         }
       ]
     }
