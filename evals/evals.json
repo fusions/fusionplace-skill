@@ -18,12 +18,12 @@
           "keywords": ["手動有効化", "手動で有効", "アドインを有効"]
         },
         {
-          "text": "fp-excel-link.xla または fp-excel-link-ribbon.xlsm に言及している",
+          "text": "アドインのファイル名（fp-excel-link.xla または fp-excel-link-ribbon.xlsm）に言及している",
           "type": "contains_any_keyword",
           "keywords": ["fp-excel-link.xla", "fp-excel-link-ribbon.xlsm", "fp-excel-link"]
         },
         {
-          "text": "トラストセンターまたはグループポリシーへの言及がある",
+          "text": "トラストセンターまたはグループポリシーへの言及がある（セキュリティ設定による原因）",
           "type": "contains_any_keyword",
           "keywords": ["トラストセンター", "グループポリシー"]
         },
@@ -31,6 +31,26 @@
           "text": "完全削除・再インストールの手順に言及している",
           "type": "contains_any_keyword",
           "keywords": ["完全削除", "再インストール", "アンインストール"]
+        },
+        {
+          "text": "バージョン確認（Excel-Link が fusion_place に対応しているか）への言及がある",
+          "type": "contains_any_keyword",
+          "keywords": ["バージョン", "バージョン情報", "バージョン確認", "対応しているか"]
+        },
+        {
+          "text": "接続先設定の確認への言及がある",
+          "type": "contains_any_keyword",
+          "keywords": ["接続先", "接続設定", "接続先設定"]
+        },
+        {
+          "text": "Excel を完全に閉じた（未起動の）状態でインストールすることを推奨している",
+          "type": "contains_any_keyword",
+          "keywords": ["起動されていない", "未起動", "Excelを閉じ", "Excelが起動"]
+        },
+        {
+          "text": "完全削除後に PC を再起動することを推奨している",
+          "type": "contains_any_keyword",
+          "keywords": ["PCを再起動", "PC を再起動", "パソコンを再起動", "再起動してから"]
         }
       ]
     },
@@ -51,19 +71,34 @@
           "keywords": ["リーフメンバ", "リーフ"]
         },
         {
-          "text": "「データ無しの時は非表示」設定に言及している",
+          "text": "「データ無しの時は非表示」または表示条件の設定に言及している",
           "type": "contains_any_keyword",
-          "keywords": ["データ無しの時は非表示", "非表示", "データなしの時"]
+          "keywords": ["データ無しの時は非表示", "表示条件", "データなしの時"]
         },
         {
-          "text": "データ爆発のメカニズム（祖先メンバ含有による増幅）に言及している",
+          "text": "データ爆発・指数関数的なデータ増幅のメカニズムに言及している",
           "type": "contains_any_keyword",
-          "keywords": ["データ爆発", "祖先メンバ", "増幅"]
+          "keywords": ["データ爆発", "増幅", "指数"]
         },
         {
           "text": "ループ仕様への言及がある",
           "type": "contains_keyword",
           "keyword": "ループ仕様"
+        },
+        {
+          "text": "2種類の原因が説明されている（データ爆発 / 非表示設定）",
+          "type": "min_section_count",
+          "min": 2
+        },
+        {
+          "text": "祖先メンバまたは集計階層がメモリ増大の原因であると説明している",
+          "type": "contains_any_keyword",
+          "keywords": ["祖先メンバ", "集計階層", "親メンバ", "上位メンバ"]
+        },
+        {
+          "text": "インポート用フォームという特定の文脈への言及がある",
+          "type": "contains_any_keyword",
+          "keywords": ["インポート用フォーム", "インポートフォーム", "インポート用"]
         }
       ]
     },
@@ -97,6 +132,21 @@
           "text": "バージョン12.0以降の挙動である旨に言及している",
           "type": "contains_any_keyword",
           "keywords": ["12.0", "v12", "バージョン12"]
+        },
+        {
+          "text": "保存ボタン・緑色・グレーなど症状の具体的な記述がある",
+          "type": "contains_any_keyword",
+          "keywords": ["保存ボタン", "緑色", "グレー"]
+        },
+        {
+          "text": "テーマ変更が即座に反映・適用されないことを説明している",
+          "type": "contains_any_keyword",
+          "keywords": ["反映", "適用", "有効"]
+        },
+        {
+          "text": "異常や不具合ではなく仕様の挙動である旨に言及している",
+          "type": "contains_any_keyword",
+          "keywords": ["仕様", "正常", "異常ではありません", "問題なく"]
         }
       ]
     },
@@ -130,6 +180,31 @@
           "text": "年度跨ぎへの対応（前年度用・当年度用のメンバリスト分離）に言及している",
           "type": "contains_any_keyword",
           "keywords": ["年度跨ぎ", "前年度用", "当年度用", "年度をまたぐ"]
+        },
+        {
+          "text": "会計年度ディメンションへの言及がある",
+          "type": "contains_any_keyword",
+          "keywords": ["会計年度"]
+        },
+        {
+          "text": "相対期間ディメンションへの言及がある",
+          "type": "contains_any_keyword",
+          "keywords": ["相対期間"]
+        },
+        {
+          "text": "バックアップファイルからアプリケーションを取り込む方法に言及している",
+          "type": "contains_any_keyword",
+          "keywords": ["バックアップ", "バックアップファイル", "アプリケーション新規作成"]
+        },
+        {
+          "text": "会計年度と相対期間の二重ループ（入れ子）構造に言及している",
+          "type": "contains_any_keyword",
+          "keywords": ["二重ループ", "二重構造", "入れ子", "ループ"]
+        },
+        {
+          "text": "実装方法が2通り説明されている（メンバリスト指定方式 / フォーム内指定方式）",
+          "type": "min_section_count",
+          "min": 2
         }
       ]
     },
@@ -157,12 +232,32 @@
         {
           "text": "郵送またはメール送付（スキャン）への言及がある",
           "type": "contains_any_keyword",
-          "keywords": ["郵送", "メール送付", "スキャン"]
+          "keywords": ["郵送", "メール送付"]
         },
         {
           "text": "処理期間（2営業日）またはパートナー・代理店経由への言及がある",
           "type": "contains_any_keyword",
           "keywords": ["2営業日", "パートナー", "代理店"]
+        },
+        {
+          "text": "変更のない箇所も全て記入する必要があると説明している",
+          "type": "contains_any_keyword",
+          "keywords": ["変更のない箇所", "全てご記入", "すべての項目", "全項目"]
+        },
+        {
+          "text": "代表者への言及がある（代表者欄の捺印）",
+          "type": "contains_any_keyword",
+          "keywords": ["代表者", "代表者欄"]
+        },
+        {
+          "text": "申込日（当日日付）の記入への言及がある",
+          "type": "contains_any_keyword",
+          "keywords": ["申込日", "本日日付", "当日日付", "申込日を記入"]
+        },
+        {
+          "text": "スキャン PDF をメール送付することで先行対応が可能であると説明している",
+          "type": "contains_any_keyword",
+          "keywords": ["先行", "先行対応", "先行して", "スキャン"]
         }
       ]
     },
@@ -196,6 +291,26 @@
           "text": "代理店・パートナー経由または直接契約の手続き分岐に言及している",
           "type": "contains_any_keyword",
           "keywords": ["代理店", "パートナー", "直接契約"]
+        },
+        {
+          "text": "グループアドレスへの変更による複数人への通知対応に言及している",
+          "type": "contains_any_keyword",
+          "keywords": ["グループアドレス", "グループメール"]
+        },
+        {
+          "text": "問い合わせ担当者は個人（氏名・メールアドレス）での登録が必須であると説明している",
+          "type": "contains_any_keyword",
+          "keywords": ["個人登録", "氏名", "メールアドレス", "個人の登録"]
+        },
+        {
+          "text": "複数担当者を配置する場合は有償オプションであると説明している",
+          "type": "contains_any_keyword",
+          "keywords": ["有償", "オプション", "追加登録"]
+        },
+        {
+          "text": "通知先の区分（問い合わせ担当者・システム運用担当者・契約関連事項連絡先）に言及している",
+          "type": "contains_any_keyword",
+          "keywords": ["通知先", "システム運用担当者", "契約関連事項連絡先", "連絡先区分"]
         }
       ]
     },
@@ -216,7 +331,7 @@
           "keywords": ["削除できません", "削除不可", "削除は", "削除機能"]
         },
         {
-          "text": "ラベル変更（NEW_LABEL）による代替策に言及している",
+          "text": "ラベル変更（NEW_LABEL フィールド）による代替策に言及している",
           "type": "contains_any_keyword",
           "keywords": ["ラベル", "NEW_LABEL", "ラベルを変更"]
         },
@@ -226,9 +341,29 @@
           "keywords": ["#ACTIVE", "使用区分", "FALSE"]
         },
         {
-          "text": "2種類以上の代替手段が説明されている",
+          "text": "2種類以上の代替手段が構造的に説明されている",
           "type": "min_section_count",
           "min": 2
+        },
+        {
+          "text": "CSV ファイルまたはインポート機能を使った一括変更（ラベル変更）に言及している",
+          "type": "contains_any_keyword",
+          "keywords": ["CSV", "インポート機能", "一括変更", "インポートファイル"]
+        },
+        {
+          "text": "全メンバツリーからの削除（ツリー上の非表示化）に言及している",
+          "type": "contains_any_keyword",
+          "keywords": ["メンバツリー", "ツリーから削除", "全メンバツリー", "ツリーから外す"]
+        },
+        {
+          "text": "#ACTIVE を使ったデータ入力禁止の効果を説明している",
+          "type": "contains_any_keyword",
+          "keywords": ["データ入力", "入力を禁止", "入力禁止", "入力できなく"]
+        },
+        {
+          "text": "削除不可の理由（仕様上の制限・チェックが複雑 など）に言及している",
+          "type": "contains_any_keyword",
+          "keywords": ["仕様", "仕様上", "制限", "検討中", "複雑"]
         }
       ]
     },
@@ -249,19 +384,34 @@
           "keywords": ["サポート", "お問い合わせ", "問い合わせ窓口"]
         },
         {
-          "text": "問い合わせ先のURLが含まれている",
+          "text": "問い合わせ先のURL（procedures ページ等）が含まれている",
           "type": "contains_pattern",
           "pattern": "docs\\.fusionplace\\.net"
         },
         {
-          "text": ".fusionplace フォルダについて質問の主題に言及している",
+          "text": ".fusionplace フォルダという質問の主題に言及している",
           "type": "contains_keyword",
           "keyword": ".fusionplace"
         },
         {
-          "text": "断定を避け不確実性を示している（推論・推測・不明等）",
+          "text": "断定を避け不確実性を示している（推論・不明・明記されていない等）",
           "type": "contains_any_keyword",
           "keywords": ["推論", "推測", "不明", "断定できません", "明記されていません", "明確ではありません"]
+        },
+        {
+          "text": "具体的な問い合わせ先ページ（procedures）への誘導がある",
+          "type": "contains_any_keyword",
+          "keywords": ["procedures", "お問い合わせ先", "公式サポート", "お問い合わせください"]
+        },
+        {
+          "text": "fusion_place の製品名が言及されている",
+          "type": "contains_any_keyword",
+          "keywords": ["fusion_place", "フュージョンプレイス"]
+        },
+        {
+          "text": "フォルダ・ディレクトリ・クライアントといった文脈説明に言及している",
+          "type": "contains_any_keyword",
+          "keywords": ["フォルダ", "ディレクトリ", "クライアント", "設定ファイル"]
         }
       ]
     }
