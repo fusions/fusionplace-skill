@@ -23,7 +23,16 @@
       "Bash(mkdir -p \"C:/Users/鶴田大地/Github/fusionplace-librarian-workspace/iteration-1/eval-dimension-member-import/without_skill/outputs\")",
       "Bash(mkdir -p \"C:/Users/鶴田大地/Github/fusionplace-librarian-workspace/iteration-1/eval-data-input-error/with_skill/outputs\")",
       "Bash(mkdir -p \"C:/Users/鶴田大地/Github/fusionplace-librarian-workspace/iteration-1/eval-data-input-error/without_skill/outputs\")",
-      "Bash(mkdir -p \"C:/Users/鶴田大地/Github/fusionplace-librarian-workspace/iteration-1/eval-org-change-design/with_skill/outputs\")"
+      "Bash(mkdir -p \"C:/Users/鶴田大地/Github/fusionplace-librarian-workspace/iteration-1/eval-org-change-design/with_skill/outputs\")",
+      "Bash(mkdir -p \"C:/Users/鶴田大地/Github/fusionplace-librarian-workspace/iteration-2/eval-dimension-vs-ledger/with_skill/outputs\")",
+      "Bash(mkdir -p \"C:/Users/鶴田大地/Github/fusionplace-librarian-workspace/iteration-2/eval-dimension-vs-ledger/without_skill/outputs\")",
+      "Bash(mkdir -p \"C:/Users/鶴田大地/Github/fusionplace-librarian-workspace/iteration-2/eval-excel-link-template/with_skill/outputs\")",
+      "Bash(mkdir -p \"C:/Users/鶴田大地/Github/fusionplace-librarian-workspace/iteration-2/eval-excel-link-template/without_skill/outputs\")",
+      "Bash(mkdir -p \"C:/Users/鶴田大地/Github/fusionplace-librarian-workspace/iteration-2/eval-ledger-input-error/with_skill/outputs\")",
+      "Bash(python3 -c ' *)",
+      "Bash(node -e \"console.log\\('node works'\\)\")",
+      "PowerShell(python --version)",
+      "PowerShell(Get-Command python, python3 -ErrorAction SilentlyContinue)"
     ]
   }
 }
