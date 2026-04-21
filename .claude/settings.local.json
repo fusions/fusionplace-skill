@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:docs.fusionplace.net)",
+      "Bash(mkdir -p \"c:/Users/鶴田大地/Github/fusionplace-librarian-workspace/iteration-1/eval-dimension-member-import/with_skill/outputs\")",
+      "Bash(mkdir -p \"c:/Users/鶴田大地/Github/fusionplace-librarian-workspace/iteration-1/eval-dimension-member-import/without_skill/outputs\")",
+      "Bash(mkdir -p \"c:/Users/鶴田大地/Github/fusionplace-librarian-workspace/iteration-1/eval-data-input-error/with_skill/outputs\")",
+      "Bash(mkdir -p \"c:/Users/鶴田大地/Github/fusionplace-librarian-workspace/iteration-1/eval-data-input-error/without_skill/outputs\")",
+      "Bash(mkdir -p \"c:/Users/鶴田大地/Github/fusionplace-librarian-workspace/iteration-1/eval-org-change-design/with_skill/outputs\")",
+      "Bash(python -m scripts.aggregate_benchmark \"c:/Users/鶴田大地/Github/fusionplace-librarian-workspace/iteration-1\" --skill-name fusionplace-librarian)",
+      "Bash(mkdir -p c:/Users/鶴田大地/Github/fusionplace-librarian-workspace/iteration-1/__TRACKED_VAR__/__TRACKED_VAR__/run-1)",
+      "Bash([ -f \"$WORKSPACE/$eval/$config/grading.json\" ])",
+      "Bash(cp c:/Users/鶴田大地/Github/fusionplace-librarian-workspace/iteration-1/__TRACKED_VAR__/__TRACKED_VAR__/grading.json c:/Users/鶴田大地/Github/fusionplace-librarian-workspace/iteration-1/__TRACKED_VAR__/__TRACKED_VAR__/run-1/grading.json)",
+      "Bash([ -f \"$WORKSPACE/$eval/$config/timing.json\" ])",
+      "Bash(cp c:/Users/鶴田大地/Github/fusionplace-librarian-workspace/iteration-1/__TRACKED_VAR__/__TRACKED_VAR__/timing.json c:/Users/鶴田大地/Github/fusionplace-librarian-workspace/iteration-1/__TRACKED_VAR__/__TRACKED_VAR__/run-1/timing.json)",
+      "Bash(python -m scripts.aggregate_benchmark \"c:/Users/鶴田大地/Github/fusionplace-librarian-workspace/iteration-1\" --skill-name fusionplace-librarian --skill-path \"c:/Users/鶴田大地/Github/fusionplace-librarian\")",
+      "Read(//usr/**)",
+      "Read(//usr/local/**)",
+      "Bash(\"/c/Users/鶴田大地/AppData/Local/Microsoft/WindowsApps/python\" --version)",
+      "Bash(cmd /c \"python --version\")",
+      "PowerShell(python --version 2>&1)",
+      "Bash(mkdir -p \"C:/Users/鶴田大地/Github/fusionplace-librarian-workspace/iteration-1/eval-dimension-member-import/with_skill/outputs\")",
+      "Bash(mkdir -p \"C:/Users/鶴田大地/Github/fusionplace-librarian-workspace/iteration-1/eval-dimension-member-import/without_skill/outputs\")",
+      "Bash(mkdir -p \"C:/Users/鶴田大地/Github/fusionplace-librarian-workspace/iteration-1/eval-data-input-error/with_skill/outputs\")",
+      "Bash(mkdir -p \"C:/Users/鶴田大地/Github/fusionplace-librarian-workspace/iteration-1/eval-data-input-error/without_skill/outputs\")",
+      "Bash(mkdir -p \"C:/Users/鶴田大地/Github/fusionplace-librarian-workspace/iteration-1/eval-org-change-design/with_skill/outputs\")"
+    ]
+  }
+}
