@@ -185,7 +185,7 @@
     },
     {
       "id": 5,
-      "prompt": "システムレベルアップをしたのですが、手続きについて教えてください。",
+      "prompt": "システムレベルアップをしたいのですが、手続きについて教えてください。",
       "expected_output": "Q&Aを参照し、条件変更手続きの方法を案内。https://docs.fusionplace.net/qanda/ja/others/Support_01851.html",
       "files": [],
       "assertions": [
