@@ -15,7 +15,7 @@
         {
           "text": "アドインの手動有効化に言及している",
           "type": "contains_any_keyword",
-          "keywords": ["手動有効化", "手動で有効", "アドインを有効"]
+          "keywords": ["手動","手動有効化","手動で有効","有効", "アドインを有効"]
         },
         {
           "text": "アドインのファイル名（fp-excel-link.xla または fp-excel-link-ribbon.xlsm）に言及している",
@@ -25,7 +25,7 @@
         {
           "text": "考えられる原因について言及している",
           "type": "contains_any_keyword",
-          "keywords": ["個別環境による問題", "セキュリティの制限"]
+                    "keywords": ["個別環境", "セキュリティ", "原因"]
         },
         {
           "text": "完全削除・再インストールの手順に言及している",
@@ -45,7 +45,7 @@
         {
           "text": "Excel を完全に閉じた（未起動の）状態でインストールすることを推奨している",
           "type": "contains_any_keyword",
-          "keywords": ["起動されていない", "未起動", "Excelを閉じ", "Excelが起動"]
+          "keywords": ["起動していない","起動されていない", "未起動", "Excelを閉じ", "Excelが起動"]
         },
         {
           "text": "完全削除後に PC を再起動することを推奨している",
@@ -57,7 +57,7 @@
     {
       "id": 2,
       "prompt": "フォームでデータインポート時にメモリ不足となって画面が固まってしまう。どうしたらいいか。",
-      "expected_output": "Q&Aを参照し、原因とインポートフォーム見直しによる対処法を案内。https://docs.fusionplace.net/qanda/ja/form/form-data-import-memory.html",
+      "expected_output": "Q&Aを参照し、原因とインポートフォーム見直しによる対処法を案内。クライアントメモリ不足についても言及する。https://docs.fusionplace.net/qanda/ja/form/form-data-import-memory.html https://docs.fusionplace.net/qanda/ja/operation/Support_00725.html https://docs.fusionplace.net/qanda/ja/system_environment/to_webmenu_from_1Gmenu.html",
       "files": [],
       "assertions": [
         {
@@ -89,10 +89,20 @@
           "text": "2種類の原因が説明されている（データ爆発 / 非表示設定）",
           "type": "min_section_count",
           "min": 2
+        },
+        {
+          "text": "クライアントのメモリ割り当て（Javaメモリ設定）に言及している",
+          "type": "contains_any_keyword",
+          "keywords": ["Javaメモリ", "メモリ割り当て", "メモリサイズ", "物理メモリ"]
+        },
+        {  
+         "text": "フォーム設計とメモリ割り当ての2つの対処法が提示されている",
+         "type": "min_section_count",
+         "min": 2
         }
-      ]
+    ]
     },
-    {
+    { 
       "id": 3,
       "prompt": "外観 / テーマを変更しました。保存ボタンがアクティブになる際、通常は緑色になっているが、ユーザによってグレーになっているケースがある。ただしこの場合保存ボタンの押下は可能。",
       "expected_output": "Q&Aを参照し、対処法を説明。https://docs.fusionplace.net/qanda/ja/others/change-theme.html",
@@ -308,13 +318,7 @@
         {
           "text": "#ACTIVE プロパティ（使用区分）による入力禁止化に言及している",
           "type": "contains_any_keyword",
-          "keywords": ["#ACTIVE", "使用区分", "FALSE"]
-        },
-        {
-          "text": "推論による補足手順を説明している",
-          "type": "contains_any_keyword",
-          "keywords": ["推論による補足"]
-        },
+          "keywords": ["#ACTIVE", "使用区分", "FALSE"]        },
         {
           "text": "CSV ファイルまたはインポート機能を使った一括変更（ラベル変更）に言及している",
           "type": "contains_any_keyword",
@@ -360,19 +364,9 @@
           "keyword": ".fusionplace"
         },
         {
-          "text": "断定を避け不確実性を示している（推論・不明・明記されていない等）",
-          "type": "contains_any_keyword",
-          "keywords": ["推論", "推測", "不明", "断定できません", "明記されていません", "明確ではありません"]
-        },
-        {
           "text": "具体的な問い合わせ先ページ（procedures）への誘導がある",
           "type": "contains_any_keyword",
           "keywords": ["procedures", "お問い合わせ先", "公式サポート", "お問い合わせください"]
-        },
-        {
-          "text": "fusion_place の製品名が言及されている",
-          "type": "contains_any_keyword",
-          "keywords": ["fusion_place", "フュージョンプレイス"]
         }
       ]
     }

@@ -6,115 +6,115 @@
     "passed": true
   },
   {
-    "query": "fp の Excel-Link でセルのデータを取り込めないんだけど、どうしたらいいの",
+    "query": "Excel-Linkでデータを反映させようとするとエラーが出る",
     "should_trigger": true,
     "triggered": false,
     "passed": false
   },
   {
-    "query": "フュージョンプレイスのバージョン 15 から 16 へのアップグレード手順を教えてください",
+    "query": "業務責任単位の設定方法を教えてほしい",
     "should_trigger": true,
     "triggered": false,
     "passed": false
   },
   {
-    "query": "組織変更があった場合の fusion_place アプリ設計のベストプラクティスを教えてほしい",
+    "query": "コントリビュータがデータを提出できないのですがなぜですか",
     "should_trigger": true,
     "triggered": true,
     "passed": true
   },
   {
-    "query": "フュージョンの元帳のアクセス権限を特定のユーザーグループだけに絞る方法はありますか",
+    "query": "元帳のアクセス権限を部門ごとに設定したい",
     "should_trigger": true,
     "triggered": false,
     "passed": false
   },
   {
-    "query": "How do I configure SAML authentication in fusion_place?",
+    "query": "フュージョンのバージョンアップ手順を教えてください",
     "should_trigger": true,
     "triggered": false,
     "passed": false
   },
   {
-    "query": "fusionplace でワークフロー提出後に承認者にメール通知が届かないのですがなぜでしょうか",
+    "query": "FREをインストールしたのですがクライアントが起動しません",
     "should_trigger": true,
     "triggered": false,
     "passed": false
   },
   {
-    "query": "フォームのラベルに計算式を設定する方法を教えてください（fusion_place）",
+    "query": "fusionplaceのマネージャでスクリプトを実行する方法は？",
     "should_trigger": true,
     "triggered": false,
     "passed": false
   },
   {
-    "query": "fusionplaceクラウドを利用していますが、データのバックアップ方法を確認したい",
+    "query": "元帳の更新履歴を確認したいのですが、どのように見ればいいですか",
     "should_trigger": true,
     "triggered": false,
     "passed": false
   },
   {
-    "query": "fusion_placeの元帳の更新履歴を見たいのですが、確認方法を教えてください",
+    "query": "fpで予算編成のワークフローを設定する手順は？",
     "should_trigger": true,
     "triggered": false,
     "passed": false
   },
   {
-    "query": "Excel のピボットテーブルで月別売上を集計したいのですが、行フィールドの設定方法がわかりません",
+    "query": "SAPの元帳データをCSVエクスポートして分析したい",
     "should_trigger": false,
     "triggered": false,
     "passed": true
   },
   {
-    "query": "操作中にメモリ不足となって画面が固まってしまう。どうしたらいいか。",
+    "query": "Power BIでディメンションを設計するときの考え方を教えて",
     "should_trigger": false,
     "triggered": false,
     "passed": true
   },
   {
-    "query": "保存ボタンがアクティブになる際、通常は緑色になっているが、ユーザーによってグレーになっているケースがある。ただしこの場合保存ボタンの押下は可能。",
+    "query": "JIRAでワークフローを設定する方法は？",
     "should_trigger": false,
     "triggered": false,
     "passed": true
   },
   {
-    "query": "Python で Excel ファイルを読み込んで元帳データを整形するスクリプトを書いて",
+    "query": "PostgreSQLでディメンションテーブルとファクトテーブルを分けるべきですか",
     "should_trigger": false,
     "triggered": false,
     "passed": true
   },
   {
-    "query": "社内向けの業務フォームを Web で作成したいのですが、おすすめのツールはありますか",
+    "query": "Tableauでデータモデルを構築する方法を教えてください",
     "should_trigger": false,
     "triggered": false,
     "passed": true
   },
   {
-    "query": "Power BI でデータモデルを設計するときのディメンションの考え方について教えて",
+    "query": "SalesforceのCRM設定で業務プロセスを自動化したい",
     "should_trigger": false,
     "triggered": false,
     "passed": true
   },
   {
-    "query": "SAP の台帳データを CSV エクスポートして分析したい",
+    "query": "OracleERPの元帳データを移行する方法を教えてください",
     "should_trigger": false,
     "triggered": false,
     "passed": true
   },
   {
-    "query": "JIRA でチームのワークフローとタスク管理を効率化する設定方法は？",
+    "query": "Accessでフォームを作成する方法を教えてください",
     "should_trigger": false,
     "triggered": false,
     "passed": true
   },
   {
-    "query": "企業向けの財務計画・予算管理ツールを比較したいのですが、何かおすすめはありますか",
+    "query": "ExcelのピボットテーブルでディメンションごとにKPIを集計したい",
     "should_trigger": false,
     "triggered": false,
     "passed": true
   },
   {
-    "query": "Azure AD で社内システムのシングルサインオンを設定する方法を教えてください",
+    "query": "Azure ADで社内システムのシングルサインオンを設定する方法",
     "should_trigger": false,
     "triggered": false,
     "passed": true
