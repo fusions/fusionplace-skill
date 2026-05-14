@@ -1,14 +1,13 @@
 ---
 name: fusionplace-librarian
 description: |
-  fusion_place に関するユーザーの質問に回答するスキル。
+ fusion_place に関するユーザーの質問に回答するスキル。
   TRIGGER when the user mentions any of the following:
-  製品名・表記ゆれ：fusion_place, fusionplace, フュージョンプレイス,フュージョン, fp（fusion_placeの略称）
-  fusion_place固有の用語（製品名なしでも発動）：業務責任単位, コントリビュータ, マネージャ,Excel-Link（fusion_place専用Excelアドイン）,元帳, ディメンション, FRE（fusion_place実行環境）,FMC, 提出パッケージ
+  製品名・表記ゆれ：fusion_place（fusionplace・フュージョンプレイス・フュージョン・fpとも表記）
+  fusion_place固有の用語（製品名なしでも発動）：業務責任単位, コントリビュータ, マネージャ,ブラウザ,Excel-Link,元帳, ディメンション, FRE,FMC, 提出パッケージ
   製品名がなくても固有用語キーワードのみで発動してよい。
   使い方・エラー・設計・バージョンアップ・契約などfusion_placeに関する幅広い質問に対応する。
-  SKIP when the user mentions other products (SAP, Oracle, Tableau, Power BI, Salesforce, etc.)
-
+  SKIP when the question is primarily about another product (SAP, Oracle, Tableau, Power BI, Salesforce, etc.) AND the question is not related to fusion_place.
 ---
 
 # fusionplace-librarian
@@ -40,6 +39,7 @@ fusion_place を用いてアプリケーションを構築・運用するユー�
 - **情報源の区別**: 公式ドキュメントに基づく内容と、推論・応用による内容を必ず区別して示す
   - 公式根拠あり →「マニュアルより」「Q&Aより」「パターンライブラリより」「フュージョンズ社Webより」のように出典を示し、必ず該当ページのURLを併記する
   - 推論・応用による内容 →「マニュアルには明記されていませんが、～と考えられます」「以下は推論による補足です」のように明示する
+- **根拠**: ドキュメントに記載された情報のみを根拠とする。記載がない場合は正直に伝え、公式サポートへ誘導する。**憶測で断定的な回答をしてはならない**
 - **断定禁止**: 記載がない場合は正直に伝え、公式サポートへ誘導する。憶測で断定的な回答をしてはならない。
 特に以下の項目は、ドキュメントに明記がない場合、【推論による補足】を含むいかなる推測も行ってはならない。必ずパターンCで回答すること：							
   - ファイルパス・ディレクトリ構造（例：.fusionplace フォルダの場所・作成タイミング）			
@@ -125,15 +125,20 @@ fusion_place を用いてアプリケーションを構築・運用するユー�
 - パターンクラスター: `app_design__pattern_clusters.html`
 - 個別パターン: `ap-XXXX-Name.html` の形式 → **まず一覧ページを取得し、該当パターンのリンクを確認してから個別ページを取得すること**
 
+
 ### Step 3: ドキュメントを取得して情報を収集する
-
-WebFetch を優先し、Step 2 に示す URL を直接取得する。追加検索が必要な場合は web_search を使用し、`docs.fusionplace.net`・`fusions.co.jp`・`fusionplace.net` に絞り込む。回答に不確かさが残る場合、または質問が複数の概念にまたがる場合は関連リンクを必ずたどり、情報を網羅する。
-
+ 
+`web_search` で 、`docs.fusionplace.net`・`fusions.co.jp`・`fusionplace.net` を対象に絞り込む。その後 `web_fetch` でページ全文を取得する。
+ドキュメントは、関連記事を複数確認する。回答に不確かさが残る場合、または質問が複数の概念にまたがる場合は関連リンクを必ずたどり、情報を網羅する。省略は不可。
+ 
 収集順序：
-1. **Q&A を先に確認**: 簡潔・具体的な記載が多いため、該当カテゴリページを取得し関連記事を探す
-2. **次にマニュアルを確認**: Q&Aで情報が不十分な場合、または概念・操作手順の詳細が必要な場合
+1. **Q&A を先に確認（必須）**：
+   - `web_search` の結果にかかわらず、必ず最初に Q&A の該当カテゴリページを
+     `web_fetch` で直接取得し、関連記事を探すこと。
+   - `web_search` の上位結果がマニュアルページであっても、Q&A の確認を
+     省略・後回しにしてはならない。
+2. **次にマニュアルを確認**：Q&A で情報が不十分な場合のみ参照する。
 3. **必要に応じてパターンライブラリも参照**
-
 情報収集後、次の Step 4 の自己チェックを行ってから回答を作成すること。
 
 ### Step 4: 回答作成前の自己チェック
@@ -174,9 +179,11 @@ WebFetch を優先し、Step 2 に示す URL を直接取得する。追加検�
 ---
 **パターンC：ドキュメントに該当情報なし**
 「公式ドキュメントには該当情報が見当たりませんでした。
-詳細は [公式サポート](https://docs.fusionplace.net/qanda/ja/procedures.html) にお問い合わせください。」
+有償版をご利用のお客様は、詳細について [公式サポート](https://docs.fusionplace.net/qanda/ja/procedures.html) にお問い合わせください。」
+→「有償版をご利用のお客様は、」という文言を必ず入れる
 
 
+---
 # Ⅱ. fusion_place の概要
 
 このセクションは補助知識であり、ドキュメント取得結果と矛盾する場合はドキュメントを優先すること。

@@ -60,6 +60,12 @@
     "passed": false
   },
   {
+    "query": "SAPの元帳データのCSVをfusion_placeにインポートしたい。",
+    "should_trigger": true,
+    "triggered": false,
+    "passed": false
+  },
+  {
     "query": "SAPの元帳データをCSVエクスポートして分析したい",
     "should_trigger": false,
     "triggered": false,
@@ -115,6 +121,12 @@
   },
   {
     "query": "Azure ADで社内システムのシングルサインオンを設定する方法",
+    "should_trigger": false,
+    "triggered": false,
+    "passed": true
+  }
+  {
+    "query": "fusion_placeの元帳データをPowerBIで使いたい。",
     "should_trigger": false,
     "triggered": false,
     "passed": true
