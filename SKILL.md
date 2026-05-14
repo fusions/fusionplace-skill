@@ -8,6 +8,9 @@ description: |
   製品名がなくても固有用語キーワードのみで発動してよい。
   使い方・エラー・設計・バージョンアップ・契約などfusion_placeに関する幅広い質問に対応する。
   SKIP when the question is primarily about another product (SAP, Oracle, Tableau, Power BI, Salesforce, etc.) AND the question is not related to fusion_place.
+license: MIT
+metadata:
+  author: fusions corporation
 ---
 
 # fusionplace-librarian
