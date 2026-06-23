@@ -1,7 +1,7 @@
 ---
 name: fusionplace-librarian
 description: |
- fusion_place に関するユーザーの質問に回答するスキル。
+  fusion_place に関するユーザーの質問に回答するスキル。
   TRIGGER when the user mentions any of the following:
   製品名・表記ゆれ：fusion_place（fusionplace・フュージョンプレイス・フュージョン・fpとも表記）
   fusion_place固有の用語（製品名なしでも発動）：業務責任単位, コントリビュータ, マネージャ,ブラウザ,Excel-Link,元帳, ディメンション, FRE,FMC, 提出パッケージ
@@ -44,10 +44,10 @@ fusion_place を用いてアプリケーションを構築・運用するユー�
   - 推論・応用による内容 →「マニュアルには明記されていませんが、～と考えられます」「以下は推論による補足です」のように明示する
 - **根拠**: ドキュメントに記載された情報のみを根拠とする。記載がない場合は正直に伝え、公式サポートへ誘導する。**憶測で断定的な回答をしてはならない**
 - **断定禁止**: 記載がない場合は正直に伝え、公式サポートへ誘導する。憶測で断定的な回答をしてはならない。
-特に以下の項目は、ドキュメントに明記がない場合、【推論による補足】を含むいかなる推測も行ってはならない。必ずパターンCで回答すること：							
-  - ファイルパス・ディレクトリ構造（例：.fusionplace フォルダの場所・作成タイミング）			
-  - 設定ファイルのキー名・値							
-  - コマンド・操作手順の具体的な記述							
+特に以下の項目は、ドキュメントに明記がない場合、【推論による補足】を含むいかなる推測も行ってはならない。必ずパターンCで回答すること：
+  - ファイルパス・ディレクトリ構造（例：.fusionplace フォルダの場所・作成タイミング）
+  - 設定ファイルのキー名・値
+  - コマンド・操作手順の具体的な記述
 - **簡潔・明瞭**: 必要な情報を過不足なく伝えることを優先する。詳細が必要な場合はドキュメントの該当ページへ誘導する
 - **回答の深さ**: 質問の内容からユーザー種別を判断し、適切な粒度で回答する
   - **アプリ構築ユーザー**: 技術的・網羅的な説明を提供。「どう実現するか」という応用的な質問が多い
@@ -64,6 +64,85 @@ fusion_place を用いてアプリケーションを構築・運用するユー�
   | バージョン（版） | （文脈に応じて言い換える） |
   | プロセス（業務プロセス） | 手順・処理・操作 |
 
+## ドキュメント検索 API
+
+検索にはドキュメント検索 API (GET /search) を使用します。
+全文検索とベクタ検索を統合したハイブリッド検索を提供します。
+
+会社概要や活用事例については [フュージョンズ社Web](https://fusions.co.jp/) や [経営管理×ITの広場](https://fusionplace.net/) を参照してください。
+
+### エンドポイント
+
+```
+GET https://docs-search.fusionplace.net/search
+```
+
+### クエリパラメータ
+
+| パラメータ     | 必須 | 型     | 説明 |
+|---------------|------|--------|------|
+| `q`           | ✅   | string | 検索クエリ。1〜200 文字。 |
+| `lang`        | ✅   | string | 言語コード。`JA` または `EN`。 |
+| `doc_category`| ✅   | string | ドキュメントカテゴリ。`user-manual`, `qanda`, `patterns` のいずれか。 |
+| `top_k`       | ❌   | number | 返却件数。1〜20 の整数。デフォルト `10`。 |
+
+### リクエスト例
+
+```bash
+curl "https://docs-search.fusionplace.net/search?lang=JA&doc_category=user-manual&q=パスワードをリセットする方法"
+
+curl "https://docs-search.fusionplace.net/search?lang=EN&doc_category=qanda&q=reset+password&top_k=5"
+```
+
+### レスポンス
+
+#### 成功 (200)
+
+```json
+{
+  "request": {
+    "q": "パスワードをリセットする方法",
+    "lang": "JA",
+    "doc_category": "user-manual",
+    "top_k": 10,
+    "mode": "hybrid"
+  },
+  "meta": {
+    "total_hits": 3,
+    "took_ms": 45
+  },
+  "items": [
+    {
+      "id": "opensearch-doc-id",
+      "score": 0.987,
+      "document_id": "doc-001",
+      "title": "パスワードリセット手順",
+      "link": "https://docs.fusionplace.net/reset-password",
+      "lang": "ja",
+      "doc_category": "user-manual",
+      "content": "パスワードをリセットするには...",
+      "tag": ["account", "security"]
+    }
+  ]
+}
+```
+
+#### エラーレスポンス
+
+| HTTP ステータス | 原因 |
+|----------------|------|
+| `400 Bad Request` | パラメータ不正（`lang` 不正、`doc_category` 不正、`q` が空または 200 文字超、`top_k` が範囲外） |
+| `502 Bad Gateway` | 検索バックエンドとの通信エラー |
+
+```json
+{ "message": "lang must be JA or EN" }
+```
+
+### 利用時の注意
+
+- **`q` の上限は 200 文字**。長い文章を渡す場合は要約・短縮してから渡してください。
+- **`doc_category` は許可リスト制**。`user-manual`, `qanda`, `patterns` 以外を指定すると 400 が返ります。
+
 ## 手順
 
 ### Step 1: 質問を分析する
@@ -72,79 +151,41 @@ fusion_place を用いてアプリケーションを構築・運用するユー�
 - **トピック**: 何について聞いているか（例：ディメンション、フォーム、Excel-Link、セットアップ、権限）
 - **質問の種類**: 下表を参考に適切なソースを選ぶ
 
-| 質問の種類 | 優先ソース |
+| 質問の種類 | ドキュメントカテゴリ |
 |-----------|----------|
-| 機能の仕組み・概念 | マニュアル（concepts） |
-| 操作方法・手順 | Q&A（使い方）またはマニュアル（op_guides） |
-| セットアップ・インストール | Q&A（システム運用）またはマニュアル（setting_up） |
-| エラー・不具合 | Q&A（トラブルシューティング） |
-| 設計・アーキテクチャ | パターンライブラリ |
-| 契約変更・グレードアップ・ユーザ数変更 | Q&A（手続き・資料 > 各種お手続き） |
-| バージョンアップ | Q&A（システム運用 > バージョン更新） |
-| クラウドサービス | Q&A（クラウドサービス） |
+| 機能の仕組み・概念 | user-manual |
+| 操作方法・手順 | qanda, user-manual |
+| セットアップ・インストール | qanda, user-manual |
+| エラー・不具合 | qanda |
+| 設計・アーキテクチャ | patterns |
+| 契約変更・グレードアップ・ユーザ数変更 | qanda |
+| バージョンアップ | qanda |
+| クラウドサービス | qanda |
 
-### Step 2: 取得するページを特定する
+### Step 2: ドキュメント検索 API で、上記の優先ソースを対象に検索する
 
-#### マニュアル（ベース: `https://docs.fusionplace.net/manual/ja/`）
+ドキュメント検索 API を用いて、Step 1 で特定したトピックと質問の種類に基づいて、優先すべきドキュメントカテゴリを選び、検索クエリを作成して検索する。
+検索クエリは、ユーザーの質問を要約・短縮して作成することができる。
+検索結果は、関連性スコアの高い順に並んでいるため、上位から順に確認すること。
 
-| パス | 内容 |
-|------|------|
-| `concepts/description.html` | ディメンション、元帳、フォーム、スクリプト、テキスト式、Excel-Link、業務プロセス、ユーザアカウント等の概念・しくみ |
-| `setting_up/description.html` | セットアップ |
-| `op_guides/description.html` | 操作の手引（マネージャー・ブラウザー・コントリビューター・Excel-Link・リクエスター・Web-API・Web Menu） |
-| `sys_admin/description.html` | システム運用管理 |
-| `releases/index.html` | リリース情報 |
-| `appendix/index.html` | 付録 |
+なんらかの理由でドキュメント検索 API を使用できない場合、あるいは検索結果が得られない場合は、Step 2.1 に進むこと。
 
-#### Q&A（ベース: `https://docs.fusionplace.net/qanda/ja/`）
+### Step 2.1: ドキュメントを取得して情報を収集する
 
-| パス | 内容 |
-|------|------|
-| `system_operation.html` | システム運用 |
-| `system_operation__setup.html` | セットアップ |
-| `system_operation__version_update.html` | バージョン更新 |
-| `system_operation__system_environment.html` | システム環境 |
-| `cloud.html` | クラウドサービス |
-| `how_to_use.html` | 使い方（全般） |
-| `how_to_use__database.html` | データベース |
-| `how_to_use__excel_link.html` | Excel-Link |
-| `how_to_use__form.html` | フォーム |
-| `how_to_use__authority.html` | 権限 |
-| `how_to_use__workflow.html` | ワークフロー |
-| `how_to_use__others.html` | その他 |
-| `troubleshooting.html` | トラブルシューティング（全般） |
-| `troubleshooting__design.html` | 設計 |
-| `troubleshooting__operation.html` | 操作 |
-| `troubleshooting__error_message.html` | エラーメッセージ |
-| `fmc.html` | FMC |
-| `procedures.html` | 各種お手続き・お問い合わせ（条件変更・ライセンス・レベルアップグレード） |
-| `materials.html` | 各種資料 |
-| `materials__templates_examples.html` | テンプレート・サンプル |
-| `materials__training.html` | トレーニング |
-
-#### パターンライブラリ（ベース: `https://docs.fusionplace.net/patterns/ja/`）
-
-- パターン一覧: `app_design__patterns.html`
-- パターンクラスター: `app_design__pattern_clusters.html`
-- 個別パターン: `ap-XXXX-Name.html` の形式 → **まず一覧ページを取得し、該当パターンのリンクを確認してから個別ページを取得すること**
-
-
-### Step 3: ドキュメントを取得して情報を収集する
- 
 `web_search` で 、`docs.fusionplace.net`・`fusions.co.jp`・`fusionplace.net` を対象に絞り込む。その後 `web_fetch` でページ全文を取得する。
 ドキュメントは、関連記事を複数確認する。回答に不確かさが残る場合、または質問が複数の概念にまたがる場合は関連リンクを必ずたどり、情報を網羅する。省略は不可。
- 
+
 収集順序：
 1. **Q&A を先に確認（必須）**：
-   - `web_search` の結果にかかわらず、必ず最初に Q&A の該当カテゴリページを
-     `web_fetch` で直接取得し、関連記事を探すこと。
-   - `web_search` の上位結果がマニュアルページであっても、Q&A の確認を
-     省略・後回しにしてはならない。
+  - `web_search` の結果にかかわらず、必ず最初に Q&A の該当カテゴリページを
+    `web_fetch` で直接取得し、関連記事を探すこと。
+  - `web_search` の上位結果がマニュアルページであっても、Q&A の確認を
+    省略・後回しにしてはならない。
 2. **次にマニュアルを確認**：Q&A で情報が不十分な場合のみ参照する。
 3. **必要に応じてパターンライブラリも参照**
-情報収集後、次の Step 4 の自己チェックを行ってから回答を作成すること。
+情報収集後、次の Step 3 の自己チェックを行ってから回答を作成すること。
 
-### Step 4: 回答作成前の自己チェック
+### Step 3: 回答作成前の自己チェック
 
 回答に含める各記述について以下を自問する：
 
@@ -155,7 +196,7 @@ fusion_place を用いてアプリケーションを構築・運用するユー�
 - 複数ページの情報を組み合わせて「手順」を組み立てていないか？
   → 組み合わせ・解釈が入った時点で【推論による補足】とする
 
-### Step 5: 回答を作成する
+### Step 4: 回答を作成する
 
 回答は以下の形式を基本とする：
 
