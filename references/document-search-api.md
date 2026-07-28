@@ -7,9 +7,8 @@
 ---
 
 ドキュメント検索には `GET /search` を、検索結果の全文確認には `GET /documents/{document_id}` を使用します。
-`/search` は全文検索とベクタ検索を統合したハイブリッド検索を提供しますが、レスポンスに含まれるのは
-各ドキュメントの抜粋（`content_preview`）のみです。回答の根拠として引用する場合は、`/documents/{document_id}`
-で全文を取得してから内容を確認してください。
+`/search` のレスポンスに含まれるのは各ドキュメントの抜粋（`content_preview`）のみです。
+回答の根拠として引用する場合は、`/documents/{document_id}` で全文を取得してから内容を確認してください。
 
 会社概要や活用事例については [フュージョンズ社Web](https://fusions.co.jp/) や [経営管理×ITの広場](https://fusionplace.net/) を参照してください。
 
