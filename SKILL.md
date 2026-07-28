@@ -107,7 +107,7 @@ grep -i "元帳" /mnt/skills/user/fusionplace-librarian/references/ja_en_glossar
 - `Status` が `Added` の項目は、既存マニュアルの表記を上書き・補足するために後から登録されたものなので、`Existing` の項目より優先して採用する（例：「フュージョンズ社」の正式表記など）。
 ## ドキュメント検索 API
  
-検索にはドキュメント検索 API (`GET https://docs-search.fusionplace.net/search`) を使用する。全文検索とベクタ検索を統合したハイブリッド検索を提供する。**エンドポイントの詳細仕様（パラメータ・レスポンス形式・エラー仕様）は `references/document-search-api.md` に切り出されているため、Step 2で実際にAPIを呼び出す前に読み込むこと**（常時読み込む必要はない）。
+検索にはドキュメント検索 API (`GET https://docs-search.fusionplace.net/search`) を使用する。全文検索とベクタ検索を統合したハイブリッド検索を提供する。検索結果の全文を確認する場合は `GET https://docs-search.fusionplace.net/documents/{document_id}` を使用する。**エンドポイントの詳細仕様（パラメータ・レスポンス形式・エラー仕様）は `references/document-search-api.md` に切り出されているため、Step 2で実際にAPIを呼び出す前に読み込むこと**（常時読み込む必要はない）。
  
 会社概要や活用事例については [フュージョンズ社Web](https://fusions.co.jp/) や [経営管理×ITの広場](https://fusionplace.net/) を参照してください。
  
@@ -136,9 +136,10 @@ grep -i "元帳" /mnt/skills/user/fusionplace-librarian/references/ja_en_glossar
  
 ドキュメント検索 API を用いて、Step 1 で特定したトピックと質問の種類に基づいて、優先すべきドキュメントカテゴリを選び、検索クエリを作成して検索する。
 検索クエリは、ユーザーの質問を要約・短縮して作成することができる。
-検索結果は、関連性スコアの高い順に並んでいるため、上位から順に確認すること。
+検索結果は、関連性スコアの高い順に並んでいるため、上位から順に確認すること。レスポンスは大きくないため、取得時に `head` 等で出力を打ち切らず、`items` 全件を確認すること。
+検索結果の `content_preview` は該当箇所の抜粋（最大190文字）にすぎないため、回答の根拠として引用する場合は、該当項目の `detail_url` から全文を取得して内容を確認すること。ただし、ユーザーへの回答で「参照：」として提示するURLは、`detail_url` ではなく常に `link`（公式ドキュメントの実ページ）を使うこと。
  
-なんらかの理由でドキュメント検索 API を使用できない場合、あるいは検索結果が得られない場合は、Step 2.1 に進むこと。
+なんらかの理由でドキュメント検索 API（`/search` ・ `/documents/{document_id}` いずれも）を使用できない場合、あるいは検索結果が得られない場合は、Step 2.1 に進むこと。
  
 ### Step 2.1: ドキュメントを取得して情報を収集する
  
