@@ -1,8 +1,3 @@
-sion_place（fusionplace・フュージョンプレイス・フュージョン・fpとも表記） fusion_place固有の用語（製品名なしでも発動）：業務責任単位, コントリビュータ, マネージャ,ブラウザ,Excel-Link,元帳, ディメンション, FRE,FMC, 提出パッケージ 製品名がなくても固有用語キーワードのみで発動してよい。 使い方・エラー・設計・バージョンアップ・契約などfusion_placeに関する幅広い質問に対応する。 SKIP when the question is primarily about another product (SAP, Oracle, Tableau, Power BI, Salesforce, etc.) AND the question is not related to fusion_place.
-
-5個のファイル
-
-
 # 回答テンプレートとURL参照ルール
  
 このファイルには、fusionplace-librarian が回答を作成する際に使う「パターンA/B/C」の具体的なテンプレート文言と、参照URLの精度・フォールバックに関する詳細ルールが記載されています。

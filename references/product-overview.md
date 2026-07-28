@@ -1,8 +1,3 @@
-, コントリビュータ, マネージャ,ブラウザ,Excel-Link,元帳, ディメンション, FRE,FMC, 提出パッケージ 製品名がなくても固有用語キーワードのみで発動してよい。 使い方・エラー・設計・バージョンアップ・契約などfusion_placeに関する幅広い質問に対応する。 SKIP when the question is primarily about another product (SAP, Oracle, Tableau, Power BI, Salesforce, etc.) AND the question is not related to fusion_place.
-
-5個のファイル
-
-
 # fusion_place の概要（補助知識）
  
 このファイルは `fusionplace-librarian` スキルの補助リファレンスです。
