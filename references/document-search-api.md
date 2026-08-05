@@ -39,13 +39,24 @@ GET https://docs-search.fusionplace.net/documents/{document_id}
 ## リクエスト例
 
 ```bash
-curl "https://docs-search.fusionplace.net/search?lang=JA&doc_category=user-manual&q=パスワードをリセットする方法"
+curl -G "https://docs-search.fusionplace.net/search" \
+  --data-urlencode "lang=JA" \
+  --data-urlencode "doc_category=user-manual" \
+  --data-urlencode "q=パスワードをリセットする方法"
 
-curl "https://docs-search.fusionplace.net/search?lang=EN&doc_category=qanda&q=reset+password&top_k=5"
+curl -G "https://docs-search.fusionplace.net/search" \
+  --data-urlencode "lang=EN" \
+  --data-urlencode "doc_category=qanda" \
+  --data-urlencode "q=reset password" \
+  --data-urlencode "top_k=5"
 
 # /search の結果、document_id="doc-001" が有力だった場合、全文を確認する
 curl "https://docs-search.fusionplace.net/documents/doc-001"
 ```
+
+`q` には日本語や記号を含むクエリをそのまま渡してよいよう、`curl -G` と `--data-urlencode` の組み合わせを
+使用してください。`?lang=...&q=...` のようにURLへ直接埋め込むと、日本語や `&`・`+` 等の記号を含むクエリで
+文字化けやパラメータ分割の誤りが発生します。
 
 **注意**: `/search` のレスポンスは大きくありません。`curl | head` のように出力を打ち切らず、
 レスポンス全体（`items` 全件）を取得・確認してください。
