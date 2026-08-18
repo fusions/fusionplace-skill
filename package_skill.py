@@ -21,7 +21,7 @@ REPO_ROOT = Path(__file__).resolve().parent
 # スキル本体として zip に含めるファイル・ディレクトリ。
 # evals/（評価専用）、.claude/・CLAUDE.md（開発者向けの Claude Code 設定/ガイド）、
 # .git・.gitignore・このスクリプト自体は、スキル実行時には不要なため含めない。
-INCLUDE_PATHS = ["SKILL.md", "references", "LICENSE.txt", "README.md"]
+INCLUDE_PATHS = ["SKILL.md", "references"]
 
 EXCLUDE_DIR_NAMES = {"__pycache__", "node_modules", ".git"}
 EXCLUDE_FILE_NAMES = {".DS_Store"}
