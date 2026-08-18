@@ -178,17 +178,23 @@ Step 1 で複数解決策型と判定した質問については、最初の検�
 
 ### Step 2.1: ドキュメントを取得して情報を収集する
 
-`web_search` で 、`docs.fusionplace.net`・`fusions.co.jp`・`fusionplace.net` を対象に絞り込む。その後 `web_fetch` でページ全文を取得する。
+`web_search` で、Step 1 で特定した優先ドキュメントカテゴリに対応する `docs.fusionplace.net` の URL パス（下表）・`fusions.co.jp`・`fusionplace.net` を対象に絞り込む。その後 `web_fetch` でページ全文を取得する。
+
+ドキュメントカテゴリと URL パスの対応（ドキュメント検索APIの `doc_category` と同じ値だが、パス表記は末尾が異なるため注意。例：`user-manual` → `manual`）：
+
+| ドキュメントカテゴリ | URL パス |
+|---|---|
+| user-manual | `https://docs.fusionplace.net/manual` |
+| qanda | `https://docs.fusionplace.net/qanda` |
+| patterns | `https://docs.fusionplace.net/patterns` |
+
 ドキュメントは、関連記事を複数確認する。回答に不確かさが残る場合、または質問が複数の概念にまたがる場合は関連リンクを必ずたどり、情報を網羅する。省略は不可。
 
-収集順序：
-1. **Q&A を先に確認（必須）**：
-  - `web_search` の結果にかかわらず、必ず最初に Q&A の該当カテゴリページを
-    `web_fetch` で直接取得し、関連記事を探すこと。
-  - `web_search` の上位結果がマニュアルページであっても、Q&A の確認を
-    省略・後回しにしてはならない。
-2. **次にマニュアルを確認**：Q&A で情報が不十分な場合のみ参照する。
-3. **必要に応じてパターンライブラリも参照**
+収集順序：**Step 1 で特定した優先ドキュメントカテゴリの順**（複数ある場合は Step 1 の表に記載された順）に確認する。Step 1 の判定と異なる順序（例：常にQ&Aを最優先にする等）で進めてはならない。
+
+1. Step 1 の表で1番目に挙げられたカテゴリについて、対応するURLパスの該当ページを `web_fetch` で直接取得し、関連記事を探すこと。
+2. 情報が不十分な場合のみ、Step 1 の表で2番目に挙げられたカテゴリ（あれば）を確認する。
+3. 上記で判断がつかない場合、または質問が設計・応用相談に関わる場合は、パターンライブラリ（`https://docs.fusionplace.net/patterns`）も参照する。
 情報収集後、次の Step 3 の自己チェックを行ってから回答を作成すること。
 
 ### Step 3: 回答作成前の自己チェック
