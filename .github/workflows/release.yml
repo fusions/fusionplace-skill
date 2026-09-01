@@ -56,12 +56,12 @@ jobs:
         run: python3 package_skill.py dist
 
       - name: Rename inner zip with version
-        run: mv dist/fusionplace-librarian.zip "dist/fusionplace-librarian-${TODAY}.zip"
+        run: mv dist/fusionplace-skill.zip "dist/fusionplace-skill-${TODAY}.zip"
 
       - name: Build outer zip (inner zip + LICENSE.txt + README.md, flat structure)
         run: |
           zip -j "dist/fusionplace-skill-${TODAY}.zip" \
-            "dist/fusionplace-librarian-${TODAY}.zip" \
+            "dist/fusionplace-skill-${TODAY}.zip" \
             LICENSE.txt \
             README.md
 
