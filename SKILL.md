@@ -11,7 +11,7 @@ description: |
 license: MIT
 metadata:
   author: fusions corporation
-  version: "20260901"
+  version: "20260907"
 ---
 
 # fusion_place navi librarian
