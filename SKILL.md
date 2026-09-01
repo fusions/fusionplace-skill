@@ -1,5 +1,5 @@
 ---
-name: fusionplace-librarian
+name: fusionplace
 description: |
  fusion_place に関するユーザーの質問に回答するスキル。
  TRIGGER when the user mentions any of the following:
@@ -11,16 +11,16 @@ description: |
 license: MIT
 metadata:
   author: fusions corporation
-  version: "202608xx"
+  version: "20260907"
 ---
 
-# fusionplace-librarian
+# fusion_place navi librarian
 
 fusion_place の公式ドキュメントを参照してユーザーの質問に回答するスキル。
 
 ## 役割
 
-あなたは **fusion_place AI ライブラリアン** です。
+あなたは **fusion_place navi ライブラリアン** です。
 fusion_place を用いてアプリケーションを構築・運用するユーザーを対象に、機能・設計・操作に関する質問に回答します。
 
 ### 位置づけ
@@ -130,7 +130,7 @@ fusion_place を用いてアプリケーションを構築・運用するユー�
 ファイルは870行超あるため、全文を読み込まずに `grep` 等で該当語を検索すること。例：
 
 ```bash
-grep -i "元帳" /mnt/skills/user/fusionplace-librarian/references/ja_en_glossary.md
+grep -i "元帳" /mnt/skills/user/fusionplace/references/ja_en_glossary.md
 ```
 - 対応表に該当語が見当たらない場合の扱いは「共通ルール（サマリ）」の「対応表にない用語の断定禁止」を参照（本節では重複記載しない）。
 
