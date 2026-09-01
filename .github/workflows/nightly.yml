@@ -23,12 +23,12 @@ jobs:
         run: python3 package_skill.py dist
 
       - name: Rename inner zip with version
-        run: mv dist/fusionplace-librarian.zip dist/fusionplace-librarian-nightly.zip
+        run: mv dist/fusionplace-skill.zip dist/fusionplace-skill-nightly.zip
 
       - name: Build outer zip (inner zip + LICENSE.txt + README.md, flat structure)
         run: |
           zip -j dist/fusionplace-skill-nightly.zip \
-            dist/fusionplace-librarian-nightly.zip \
+            dist/fusionplace-skill-nightly.zip \
             LICENSE.txt \
             README.md
 
