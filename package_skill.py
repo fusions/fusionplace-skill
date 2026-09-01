@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """
-fusionplace-librarian スキルを配布用の zip にまとめるスクリプト。
+fusionplace-skill スキルを配布用の zip にまとめるスクリプト。
 
 Usage:
     python3 package_skill.py [output-directory]
 
 Example:
-    python3 package_skill.py            # カレントディレクトリに fusionplace-librarian.zip を作成
-    python3 package_skill.py ./dist     # ./dist/fusionplace-librarian.zip を作成
+    python3 package_skill.py            # カレントディレクトリに fusionplace-skill.zip を作成
+    python3 package_skill.py ./dist     # ./dist/fusionplace-skill.zip を作成
 """
 
 import fnmatch
@@ -15,7 +15,7 @@ import sys
 import zipfile
 from pathlib import Path
 
-SKILL_NAME = "fusionplace-librarian"
+SKILL_NAME = "fusionplace-skill"
 REPO_ROOT = Path(__file__).resolve().parent
 
 # スキル本体として zip に含めるファイル・ディレクトリ。
