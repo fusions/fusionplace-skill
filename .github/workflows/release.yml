@@ -1,0 +1,83 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_notes:
+        description: "リリースノート（省略可）"
+        required: false
+        default: ""
+      draft:
+        description: "Create as a draft release for testing (skips the main-branch requirement, no tag is created until published)"
+        type: boolean
+        required: false
+        default: false
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Reject execution from branches other than main (unless draft)
+        run: |
+          if [ "${{ inputs.draft }}" != "true" ] && [ "${{ github.ref }}" != "refs/heads/main" ]; then
+            echo "::error::This workflow can only be run from the main branch for a real release (current ref: ${{ github.ref }}). Set draft=true to test from another branch, or re-run selecting main as the target branch."
+            exit 1
+          fi
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Compute today's date as version (JST)
+        run: |
+          TODAY=$(TZ='Asia/Tokyo' date +%Y%m%d)
+          echo "TODAY=${TODAY}" >> "$GITHUB_ENV"
+
+      - name: Verify SKILL.md's metadata.version matches today's date
+        run: |
+          SKILL_VERSION=$(tr -d '\r' < SKILL.md | awk '/^---$/{c++; next} c==1' | grep 'version:' | grep -oE '[0-9]{8}')
+          if [ -z "$SKILL_VERSION" ]; then
+            echo "::error::Could not read metadata.version from SKILL.md's frontmatter."
+            exit 1
+          fi
+          if [ "$SKILL_VERSION" != "$TODAY" ]; then
+            echo "::error::SKILL.md's metadata.version (${SKILL_VERSION}) does not match today's date (${TODAY}). Update metadata.version in SKILL.md's frontmatter to \"${TODAY}\", commit it, then re-run this workflow."
+            exit 1
+          fi
+          echo "Version check OK: ${SKILL_VERSION}"
+
+      - name: Build inner zip (SKILL.md + references/)
+        run: python3 package_skill.py dist
+
+      - name: Rename inner zip with version
+        run: mv dist/fusionplace-librarian.zip "dist/fusionplace-librarian-${TODAY}.zip"
+
+      - name: Build outer zip (inner zip + LICENSE.txt + README.md, flat structure)
+        run: |
+          zip -j "dist/fusionplace-skill-${TODAY}.zip" \
+            "dist/fusionplace-librarian-${TODAY}.zip" \
+            LICENSE.txt \
+            README.md
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASE_NOTES: ${{ inputs.release_notes }}
+          DRAFT: ${{ inputs.draft }}
+        run: |
+          EXTRA_ARGS=()
+          if [ "$DRAFT" = "true" ]; then
+            EXTRA_ARGS+=(--draft)
+          fi
+          gh release create "${TODAY}" \
+            "dist/fusionplace-skill-${TODAY}.zip" \
+            --target "${{ github.sha }}" \
+            --title "fusion_place skill ${TODAY}" \
+            --notes "$RELEASE_NOTES" \
+            "${EXTRA_ARGS[@]}"
