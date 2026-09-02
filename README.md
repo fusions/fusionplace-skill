@@ -1,20 +1,21 @@
-# fusionplace-skills
+# fusionplace-skill
 
 # 1．はじめに
 
 本READMEは、fusion_place navi をご利用いただくための手順および注意事項をまとめたものです。
 
-fusion_place navi のご利用は無料です。ただし、fusion_place の機能及び使い方に関する基礎知識をAIに提供する「スキル」が含まれており、ご利用には別途、生成AIサービス（Claude 等）が必要です。Claude での利用を前提に設計・検証しており、他のAIサービスでの手順のご提供および動作の保証はしておりません。
-なお、Claude のアカウント作成・プラン費用はご利用者様のご負担となります。
+fusion_place navi 自体のご利用は無料です。
+
+ただし、fusion_place の機能及び使い方に関する基礎知識をAIに提供する「スキル」が含まれており、ご利用には別途、生成AIサービス（Claude 等）が必要です。Claude での利用を前提に設計・検証しており、他のAIサービスでの手順のご提供および動作の保証はしておりません。
+Claude のアカウント作成・プラン費用はご利用者様のご負担となります。
 
 スキルは、以下のサイトにて公開しております。
 
-公開サイト：　https://github.com/fusions/fusionplace-skills
-
+公開サイト：　https://github.com/fusions/fusionplace-skill
 
 # 2．利用手順
 
-## STEP 1　アカウントの取得
+## STEP 1　アカウントの作成
 
 ご利用には生成AIサービスが必要なため、Anthropic 公式サイト（https://claude.ai）より、アカウントを作成してください。無料プランでもご利用いただけますが、Claude のご利用プランによって送信回数に上限がある場合があります。詳細はAnthropicの公式サイトをご確認ください。
 
@@ -24,7 +25,7 @@ fusion_place navi のご利用は無料です。ただし、fusion_place の機�
 
 以下より、スキルの設定手順をご参照ください。
 
-スキル設定手順：　`XXXX`
+fusion_place skill のセットアップ：　https://navi.fusionplace.net/ja/getting-started/setup-skill.html
 
 
 # 3．ご利用にあたっての注意
