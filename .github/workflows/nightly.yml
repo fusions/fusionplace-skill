@@ -1,0 +1,46 @@
+name: Nightly Build
+
+on:
+  push:
+    branches:
+      - develop
+
+concurrency:
+  group: nightly-release
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build inner zip (SKILL.md + references/)
+        run: python3 package_skill.py dist
+
+      - name: Build outer zip (inner zip + LICENSE.txt + README.md, flat structure)
+        run: |
+          zip -j dist/fusionplace-skill-nightly.zip \
+            dist/fusionplace-skill.zip \
+            LICENSE.txt \
+            README.md
+
+      - name: Delete existing nightly release (no-op on first run, since none exists yet)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh release delete nightly --cleanup-tag --yes || true
+
+      - name: Create nightly release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create nightly \
+            dist/fusionplace-skill-nightly.zip \
+            --target "${{ github.sha }}" \
+            --title "fusion_place skill nightly" \
+            --notes "" \
+            --prerelease
