@@ -53,21 +53,24 @@
 ## フォルダ構成
 
 ```
-fusionplace/
-├── SKILL.md                            … 目次・振り分け
+（リポジトリ直下）
 ├── CONTRIBUTING.md                     … 保守担当者向けルール（本ファイル。回答時は読まない）
-├── knowledge/                          … ライブラリアン（Q&A回答）
-│   ├── librarian_guide.md                 … 起点ガイド：Q&A回答ガイド
-│   ├── ja_en_glossary.md                  … 日英対応表
-│   ├── product_overview.md                … 製品概要・補助知識
-│   └── document_search_api.md             … ドキュメント検索API仕様
-├── excel_link/                         … Excel-Link 作成・解読支援
-│   ├── excel_link_guide.md                … 起点ガイド：生成・解読ガイド（参照順序・設計慣習）
-│   ├── excel_link_named_ranges.md         … 名前定義リファレンス
-│   ├── demo_store_pl_variance.xlsx        … Excel-Link サンプルシート
-│   └── excel_link_source_excerpt.bas      … VBAソース抜粋（一次的根拠）
-├── app_definition/                     … .apd 読解支援
-│   └── apd_reading_guide.md               … 起点ガイド：.apd 読解ガイド
-└── data_access/                        … データアクセス・分析支援（MCP経由のフォームデータ取得）
-    └── data_access_guide.md               … 起点ガイド：フォーム経由データ分析ガイド
+├── package_skill.py                    … fusionplace-skill/ を配布用 zip にまとめる（GitHub Actions からも使用）
+├── evals/                              … 評価資産（zip に含めない）
+└── fusionplace-skill/                  … スキル本体（このディレクトリ配下だけが zip に入る。以下「スキルのルート」）
+    ├── SKILL.md                        … 目次・振り分け
+    ├── knowledge/                      … ライブラリアン（Q&A回答）
+    │   ├── librarian_guide.md             … 起点ガイド：Q&A回答ガイド
+    │   ├── ja_en_glossary.md              … 日英対応表
+    │   ├── product_overview.md            … 製品概要・補助知識
+    │   └── document_search_api.md         … ドキュメント検索API仕様
+    ├── excel_link/                     … Excel-Link 作成・解読支援
+    │   ├── excel_link_guide.md            … 起点ガイド：生成・解読ガイド（参照順序・設計慣習）
+    │   ├── excel_link_named_ranges.md     … 名前定義リファレンス
+    │   ├── demo_store_pl_variance.xlsx    … Excel-Link サンプルシート
+    │   └── excel_link_source_excerpt.bas  … VBAソース抜粋（一次的根拠）
+    ├── app_definition/                 … .apd 読解支援
+    │   └── apd_reading_guide.md           … 起点ガイド：.apd 読解ガイド
+    └── data_access/                    … データアクセス・分析支援（MCP経由のフォームデータ取得）
+        └── data_access_guide.md           … 起点ガイド：フォーム経由データ分析ガイド
 ```

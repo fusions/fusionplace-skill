@@ -19,7 +19,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Build inner zip (SKILL.md + references/)
+      - name: Build inner zip (fusionplace-skill/)
         run: python3 package_skill.py dist
 
       - name: Build outer zip (inner zip + LICENSE.txt + README.md, flat structure)

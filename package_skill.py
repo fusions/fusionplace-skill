@@ -18,10 +18,9 @@ from pathlib import Path
 SKILL_NAME = "fusionplace-skill"
 REPO_ROOT = Path(__file__).resolve().parent
 
-# スキル本体として zip に含めるファイル・ディレクトリ。
-# evals/（評価専用）、.claude/・CLAUDE.md（開発者向けの Claude Code 設定/ガイド）、
-# .git・.gitignore・このスクリプト自体は、スキル実行時には不要なため含めない。
-INCLUDE_PATHS = ["SKILL.md", "references"]
+# スキル本体として zip に含めるディレクトリ。配下のファイルを再帰的にすべて含める。
+# evals/・.claude/・CLAUDE.md・LICENSE/README 等はこのディレクトリの外にあるため含まれない。
+SKILL_DIR = REPO_ROOT / SKILL_NAME
 
 EXCLUDE_DIR_NAMES = {"__pycache__", "node_modules", ".git"}
 EXCLUDE_FILE_NAMES = {".DS_Store"}
@@ -37,17 +36,11 @@ def should_exclude(rel_path: Path) -> bool:
 
 
 def iter_files():
-    for include in INCLUDE_PATHS:
-        src = REPO_ROOT / include
-        if not src.exists():
-            print(f"  (skip: not found) {include}")
-            continue
-        if src.is_file():
-            yield src
-        else:
-            for file_path in sorted(src.rglob("*")):
-                if file_path.is_file():
-                    yield file_path
+    if not (SKILL_DIR / "SKILL.md").is_file():
+        sys.exit(f"error: {SKILL_DIR / 'SKILL.md'} not found")
+    for file_path in sorted(SKILL_DIR.rglob("*")):
+        if file_path.is_file():
+            yield file_path
 
 
 def package_skill(output_dir: Path) -> Path:
@@ -56,7 +49,7 @@ def package_skill(output_dir: Path) -> Path:
 
     with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zf:
         for file_path in iter_files():
-            rel_path = file_path.relative_to(REPO_ROOT)
+            rel_path = file_path.relative_to(SKILL_DIR)
             if should_exclude(rel_path):
                 print(f"  skipped: {rel_path}")
                 continue
