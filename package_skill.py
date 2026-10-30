@@ -53,7 +53,7 @@ def package_skill(output_dir: Path) -> Path:
             if should_exclude(rel_path):
                 print(f"  skipped: {rel_path}")
                 continue
-            arcname = Path(SKILL_NAME) / rel_path
+            arcname = rel_path
             zf.write(file_path, arcname)
             print(f"  added:   {arcname}")
 
