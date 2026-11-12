@@ -149,9 +149,9 @@ fusion_place Excel-Link の各設定項目の設定値は、シートローカ�
 | `REGIONNAME` | 文字列 | リンク領域の名称（任意の識別名） | |
 | `RANGE` | セル範囲 | データを取得・反映するセル範囲 | リンク領域の本体 |
 | `APPLABELRANGE` | 列全体/行全体 | アプリケーションラベルを参照するセルの位置 | COL/ROW分割 |
-| `PARTICIPANTLABELRANGE` | 列全体/行全体 | コントリビュータラベルを参照するセルの位置 | COL/ROW分割 |
+| `PARTICIPANTLABELRANGE` | 列全体/行全体 | 業務責任単位を参照するセルの位置 | COL/ROW分割 |
 | `EDITIONKEYRANGE` | 列全体/行全体 | エディションキーを参照するセルの位置 | COL/ROW分割 |
-| `REGIONTYPE` | 整数 | 領域タイプ（取得のみ・更新可能・など） | 整数コードで種別を識別 |
+| `REGIONTYPE` | 整数 | 領域タイプ | 整数コードで種別を識別 |
 | `UNITRANGE` | 列全体/行全体 | 単位（スケール）を参照するセルの位置 | COL/ROW分割 |
 | `LEDGERLABEL` | 文字列 | 対象元帳のラベル | |
 | `APPLICABLEACTION` | 整数 | 適用アクション種別（取得・反映など） | 整数コードで制御 |
@@ -161,7 +161,7 @@ fusion_place Excel-Link の各設定項目の設定値は、シートローカ�
 | `TYPECHKENABLD` | Boolean | データ型チェックを有効にするか | |
 | `ENUMDESCRIPTIVE` | Boolean | 列挙型を表示名形式で扱うか | `FALSE` = コード値 |
 | `TOCONVERTDATETIMETEXT` | Boolean | 日時テキストを変換するか | 新規作成時デフォルト `TRUE` |
-| `SIGN` | 整数 | 符号（`1` = そのまま、`-1` = 反転） | |
+| `SIGN` | 整数 | 符号処理（コード値は 5.3 を参照） | `0` = 科目属性に従う（既定） |
 | `DECIMALPLACES` | 整数 | 小数点以下の桁数 | |
 | `SWITCHCELLLOCKING` | Boolean | セルロックの切り替えを行うか | |
 | `LOCKEDCOLORRANGE` | 列全体/行全体 | ロック状態を色表示するセルの位置 | COL/ROW分割 |
@@ -261,9 +261,36 @@ fusion_place Excel-Link の各設定項目の設定値は、シートローカ�
 
 運用上変わりうるが、シート生成時の妥当な既定値の例。
 
-| 項目 | ラベル | 既定値 | 備考 |
-|---|---|---|---|
-| 業務責任単位指定セル | `PARTICIPANTLABELRANGE` | `#NONE` | COL/ROW分割でセル参照 |
-| 版指定セル | `EDITIONKEYRANGE` | `WORKSPACE` | 共有作業版。COL/ROW分割 |
-| 表示単位セル | `UNITRANGE` | `1` | 単位（スケール）。COL/ROW分割 |
-| 増減科目 | （キー割当 `#CHANGE`） | `#NONE` | |
+**.apd が利用可能な場合は、.apd の記載を本節の既定値より優先する。**
+ただし、版（`WORKSPACE`）と表示単位は .apd に記載がないため、本節の値を使う。
+業務責任単位は .apd の `APPLICATION_TYPE` で決める。`WORKGROUP` は業務責任単位・実行権限を持たないため #NONE を指定する。`ENTERPRISE `と `WORKFLOW` は `PARTICIPANTS` の実ラベルを指定し、ユーザーが未指定なら候補を示して質問する。
+
+**.apd がない場合**、本節の既定値で補ってよいのは、版（`WORKSPACE`）・表示単位（`1`）・増減科目（`#NONE`）の3項目のみ。**業務責任単位を含む、6.1 の項目には既定値がない。仮置きせず、シートを作る前にユーザーへ質問する。** 業務責任単位は、アプリケーションの種類（`WORKGROUP`／`ENTERPRISE`／`WORKFLOW`）と、使う業務責任単位のラベルを質問する。サンプルファイルや他アプリケーションの値は流用しない。
+いずれの場合も、既定値を使った旨をユーザーに伝える。
+
+| 項目 | ラベル | 既定値 | 備考 | .apd での確認 |
+|---|---|---|---|---|
+| 版指定セル | `EDITIONKEYRANGE` | `WORKSPACE` | 共有作業版。COL/ROW分割 | 記載なし（.apd に版の定義はない）。本節の値を使う |
+| 表示単位セル | `UNITRANGE` | `1` | 単位（スケール）。COL/ROW分割 | 記載なし（.apd に単位の定義はない）。本節の値を使う |
+| 増減科目 | （キー割当 `#CHANGE`） | `#NONE` | | `DIMENSIONS` > `DIMENSION[#CHANGE]` に `#NONE` メンバが実在することを確認できる |
+| 業務責任単位指定セル | `PARTICIPANTLABELRANGE` | `#NONE`（.apd があり `APPLICATION_TYPE` が `WORKGROUP` の場合のみ） | COL/ROW分割でセル参照 | `ENTERPRISE`／`WORKFLOW` は `PARTICIPANTS` > `PARTICIPANT[ラベル]` の実ラベル（例：`000`、`101`）を使う。.apd がない場合は既定値なし。ユーザーに質問する。 |
+
+### 6.1 .apd から読み取る項目
+
+次の項目は、アプリケーションごとに異なるため、既定値ではなく .apd から毎回読み取る。
+**.apd がない場合は、推測も仮置きもせず、シートを作る前にユーザーへ質問する。** 質問する項目は、次の6つ。
+- アプリケーションラベル
+- 元帳ラベル
+- 元帳のディメンション構成（`USED_DIMENSION` の定義順）
+- ディメンション名
+- 縦横に展開するメンバのラベル
+- 業務責任単位
+
+他のアプリケーションやサンプルファイルの値を流用しない。
+
+| 項目 | .apd 上の位置 | 注意 |
+|---|---|---|
+| 元帳のキー割当 | `LEDGERS` > `LEDGER[ラベル]` > `USED_DIMENSIONS` > `USED_DIMENSION[ラベル]` | `KB_NNN_KEYDIM` / `KEYRANGE` の組は、この記載順・ラベルと完全に一致させる。同じ元帳名でも、アプリごとに並び順が異なる |
+| 業務責任単位 | `PARTICIPANTS` > `PARTICIPANT[ラベル]` > `RESPONSIBILITY_KEY` | 例：`{BU=101}` |
+| ディメンション名 | `DIMENSIONS` > `DIMENSION[ラベル]` | アプリごとに異なる（例：`BU` と `00_BU`、`FIELD` と `01_FIELD`） |
+| 縦横に展開するメンバ | 対応する `DIMENSION` のメンバツリー | root-ids から child-ids を辿る。読み方は `app_definition/apd_reading_guide.md` を参照 |
