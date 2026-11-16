@@ -10,7 +10,7 @@ license: MIT
 compatibility: Requires network access to docs-search.fusionplace.net and docs.fusionplace.net (fallback web search/fetch also uses fusions.co.jp and fusionplace.net). Python is required for Excel-Link generation (openpyxl) and .apd parsing (standard library).
 metadata:
   author: fusions corporation
-  version: "202610XX"
+  version: "20261116"
 ---
 
 # fusion_place スキル（目次・ユースケース振り分け）
@@ -31,7 +31,7 @@ metadata:
 ## 振り分けの手順
 
 1. **判定する**：ユーザーの依頼が上表のどのユースケースに該当するか判定する。
-   - キーワードだけでなく「〜を作りたい／設定したい」（作成・生成依頼）なのか、「〜について教えて／なぜ〜」（質問・調査依頼）なのかで見分ける。例えば同じ「Excel-Link」でも、シートを新規作成したい・既存シートを解読したいなら `excel_link/`、Excel-Link の一般的な使い方・仕様を尋ねているだけなら `knowledge/`。既存シートそのものの変更依頼は、`excel_link/excel_link_guide.md` の「0. 対応範囲」に従って扱う。   
+   - キーワードだけでなく「〜を作りたい／設定したい」（作成・生成依頼）なのか、「〜について教えて／なぜ〜」（質問・調査依頼）なのかで見分ける。例えば同じ「Excel-Link」でも、シートを新規作成したい・既存シートを解読したいなら `excel_link/`、Excel-Link の一般的な使い方・仕様を尋ねているだけなら `knowledge/`。既存シートそのものの変更依頼は、`excel_link/excel_link_guide.md` の「0. 対応範囲」に従って扱う。
    - **複数のユースケースにまたがる依頼**は、まず依頼の最終成果物に対応する主ガイド(定義は手順3)を読み込み、従ガイドを読むタイミングは主ガイドの指示に従う。例：「.apd の内容を踏まえて Excel-Link シートを作りたい」→ 先に excel_link/excel_link_guide.md を読み込む。同ガイド §1.1 の指示に従い、シート設計の前に app_definition/apd_reading_guide.md で .apd を読む。
    - **対象外の依頼**：MCP ツール等による fusion_place への接続・ログインを伴う実データの取得・集計（フォーム名や POV を指定した集計表の作成など）は、本スキルでは対応していない。その旨をユーザーに伝え、ライブラリアンとして製品知識の範囲で回答できる部分があれば案内する。
    - **判定に迷う場合**は、既定でライブラリアン（`knowledge/`）として扱う。
