@@ -12,20 +12,21 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## リポジトリ構成
 
+スキル本体（`SKILL.md` と各ユースケースのフォルダ）はすべて **`fusionplace-skill/`** 配下に置かれ、
+`package_skill.py` はこのディレクトリを再帰的に zip 化する（`evals/`・`CLAUDE.md` 等は含まれない）。
+以下のパスは特記なき限り `fusionplace-skill/` からの相対パス。
+
 - **`SKILL.md`** — スキル定義本体（YAML フロントマター＋指示内容）。フロントマターの `description` は
   ホスト側がこのスキルを**いつ発動させるか**を判断する材料になる（発動キーワードは後述）。本文は
   ライブラリアンのペルソナ、回答方針、および4ステップの手順（質問分析 → ドキュメント検索 → 自己チェック
   → 回答作成）を定義する。
-- **`references/`** — `SKILL.md` が「必要になった時にだけ読み込む」よう明示的に指示している補助資料。
-  各ファイルは手順のどこか1ステップに対応づけられている：
-  - `document-search-api.md` — ドキュメント検索APIの詳細仕様。Step 2（API呼び出し）の直前に読み込む。
-  - `response-patterns.md` — 回答パターンA/B/Cの具体的な文言テンプレートと、参照URLの精度・
-    フォールバックルール。Step 4（回答作成）の直前に読み込む。
-  - `ja_en_glossary.md` — 870行超のJA/EN対応表（`| JA | EN | Status | Note |`）。全文を読み込むのではなく
-    `grep` で該当語を検索する前提の資料。
-  - `product-overview.md` — fusion_place の基礎概念（ディメンション・元帳・フォーム・Excel-Link・
-    業務プロセス等）の解説。検索結果だけでは前提知識の説明が不十分なときのみ読み込む。glossary と違い
-    grep 向きではないプロース形式のため、必要と判断したら全文を読み込む。
+- **`knowledge/`** — ライブラリアン（Q&A回答）用。起点ガイド `librarian_guide.md`（ペルソナ・回答方針・
+  回答パターンA/B/C・手順）と、必要時のみ読み込む補助資料：
+  - `document_search_api.md` — ドキュメント検索APIの詳細仕様。Step 2（API呼び出し）の直前に読み込む。
+  - `ja_en_glossary.md` — JA/EN対応表（`| JA | EN | Status | Note |`）。全文ではなく `grep` で検索する前提。
+  - `product_overview.md` — fusion_place の基礎概念の解説。前提知識の説明が不十分なときのみ全文を読み込む。
+- **`excel_link/`・`app_definition/`・`data_access/`** — それぞれ Excel-Link 作成・解読支援、.apd 読解支援、
+  MCP 経由のフォームデータ分析支援の起点ガイドと補助ファイル。`SKILL.md` が振り分ける。
 - **`evals/`** — アプリケーションのテストではなく、このスキル自体の評価資産：
   - `trigger_eval.json` / `run_trigger_eval.py` — `should_trigger: true/false` がラベル付けされたクエリ集で、
     `SKILL.md` のフロントマターが意図通りに発動（または非発動）するかを検証する。ランナーはローカルの
@@ -62,7 +63,7 @@ pass/fail のサマリと各クエリの結果を `evals/trigger_eval_results.js
   万能回避策として復活させないこと。パターンCはバージョン固有仕様・契約条件・既知の不具合・環境固有の
   設定値など「客観的事実の欠落時」に限定される。ユーザー自身の業務・設計相談に対しては、情報の欠如を
   理由にパターンCへ逃げず、【推論による補足】として選択肢を自ら提示することが期待されている。
-- **回答パターンA/B/Cのテンプレート**は `SKILL.md` 本体ではなく `references/response-patterns.md` に
+- **回答パターンA/B/Cのテンプレート**は `SKILL.md` 本体ではなく `knowledge/librarian_guide.md` に
   切り出されている。文言テンプレートを変更する場合は両ファイルが食い違わないようそちらを編集すること。
 - **用語の誤用禁止**：`SKILL.md` には、地の文で別の意味に使ってはならない fusion_place 固有用語の対応表
   （シナリオ・元帳・フォーム・メンバ・バージョン・プロセス）がある。用語の追加・変更があれば、この表も
@@ -70,5 +71,5 @@ pass/fail のサマリと各クエリの結果を `evals/trigger_eval_results.js
 - **JA/EN対応表の優先順位**：`Status: Added` の項目は既存マニュアル表記への後からの追加・訂正であり、
   同一用語について `Status: Existing` より優先される。`ja_en_glossary.md` を編集する際もこの優先順位を
   崩さないこと。
-- 遅延読み込み方式の参照ファイルを新規追加する場合は、既存4ファイルの慣習に従うこと：`SKILL.md` 側に
+- 遅延読み込み方式の参照ファイルを新規追加する場合は、既存の補助ファイルの慣習に従うこと：`SKILL.md` 側に
   「どのステップで読み込むか」を明記し、参照ファイル冒頭にも「読み込むタイミング」の一言注記を添える。

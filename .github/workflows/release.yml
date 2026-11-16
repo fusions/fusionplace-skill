@@ -41,7 +41,7 @@ jobs:
 
       - name: Verify SKILL.md's metadata.version matches today's date
         run: |
-          SKILL_VERSION=$(tr -d '\r' < SKILL.md | awk '/^---$/{c++; next} c==1' | grep 'version:' | grep -oE '[0-9]{8}')
+          SKILL_VERSION=$(tr -d '\r' < fusionplace-skill/SKILL.md | awk '/^---$/{c++; next} c==1' | grep 'version:' | grep -oE '[0-9]{8}')
           if [ -z "$SKILL_VERSION" ]; then
             echo "::error::Could not read metadata.version from SKILL.md's frontmatter."
             exit 1
@@ -52,7 +52,7 @@ jobs:
           fi
           echo "Version check OK: ${SKILL_VERSION}"
 
-      - name: Build inner zip (SKILL.md + references/)
+      - name: Build inner zip (fusionplace-skill/)
         run: python3 package_skill.py dist
 
       - name: Build outer zip (inner zip + LICENSE.txt + README.md, flat structure)
